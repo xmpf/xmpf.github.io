@@ -2,151 +2,151 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on ☣ ishtar ☣</title>
-    <link>https://example.com/tags/</link>
+    <link>https://xmpf.github.io/tags/</link>
     <description>Recent content in Tags on ☣ ishtar ☣</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://xmpf.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>attackdefense</title>
-      <link>https://example.com/tags/attackdefense/</link>
+      <link>https://xmpf.github.io/tags/attackdefense/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/attackdefense/</guid>
+      <guid>https://xmpf.github.io/tags/attackdefense/</guid>
       <description></description>
     </item>
     
     <item>
       <title>aws</title>
-      <link>https://example.com/tags/aws/</link>
+      <link>https://xmpf.github.io/tags/aws/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/aws/</guid>
+      <guid>https://xmpf.github.io/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>capabilities</title>
-      <link>https://example.com/tags/capabilities/</link>
+      <link>https://xmpf.github.io/tags/capabilities/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/capabilities/</guid>
+      <guid>https://xmpf.github.io/tags/capabilities/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ccsc</title>
-      <link>https://example.com/tags/ccsc/</link>
+      <link>https://xmpf.github.io/tags/ccsc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/ccsc/</guid>
+      <guid>https://xmpf.github.io/tags/ccsc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>cloud security</title>
-      <link>https://example.com/tags/cloud-security/</link>
+      <link>https://xmpf.github.io/tags/cloud-security/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/cloud-security/</guid>
+      <guid>https://xmpf.github.io/tags/cloud-security/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ctf</title>
-      <link>https://example.com/tags/ctf/</link>
+      <link>https://xmpf.github.io/tags/ctf/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/ctf/</guid>
+      <guid>https://xmpf.github.io/tags/ctf/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>https://example.com/tags/docker/</link>
+      <link>https://xmpf.github.io/tags/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/docker/</guid>
+      <guid>https://xmpf.github.io/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>enumeration</title>
-      <link>https://example.com/tags/enumeration/</link>
+      <link>https://xmpf.github.io/tags/enumeration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/enumeration/</guid>
+      <guid>https://xmpf.github.io/tags/enumeration/</guid>
       <description></description>
     </item>
     
     <item>
       <title>faq</title>
-      <link>https://example.com/tags/faq/</link>
+      <link>https://xmpf.github.io/tags/faq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/faq/</guid>
+      <guid>https://xmpf.github.io/tags/faq/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ld.so.preload</title>
-      <link>https://example.com/tags/ld.so.preload/</link>
+      <link>https://xmpf.github.io/tags/ld.so.preload/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/ld.so.preload/</guid>
+      <guid>https://xmpf.github.io/tags/ld.so.preload/</guid>
       <description></description>
     </item>
     
     <item>
       <title>movaps</title>
-      <link>https://example.com/tags/movaps/</link>
+      <link>https://xmpf.github.io/tags/movaps/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/movaps/</guid>
+      <guid>https://xmpf.github.io/tags/movaps/</guid>
       <description></description>
     </item>
     
     <item>
       <title>privesc</title>
-      <link>https://example.com/tags/privesc/</link>
+      <link>https://xmpf.github.io/tags/privesc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/privesc/</guid>
+      <guid>https://xmpf.github.io/tags/privesc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pwn</title>
-      <link>https://example.com/tags/pwn/</link>
+      <link>https://xmpf.github.io/tags/pwn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/pwn/</guid>
+      <guid>https://xmpf.github.io/tags/pwn/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pwntools</title>
-      <link>https://example.com/tags/pwntools/</link>
+      <link>https://xmpf.github.io/tags/pwntools/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/pwntools/</guid>
+      <guid>https://xmpf.github.io/tags/pwntools/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ret2libc</title>
-      <link>https://example.com/tags/ret2libc/</link>
+      <link>https://xmpf.github.io/tags/ret2libc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/ret2libc/</guid>
+      <guid>https://xmpf.github.io/tags/ret2libc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>whoami</title>
-      <link>https://example.com/tags/whoami/</link>
+      <link>https://xmpf.github.io/tags/whoami/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/tags/whoami/</guid>
+      <guid>https://xmpf.github.io/tags/whoami/</guid>
       <description></description>
     </item>
     

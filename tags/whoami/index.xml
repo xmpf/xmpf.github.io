@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>whoami on ☣ ishtar ☣</title>
-    <link>https://example.com/tags/whoami/</link>
+    <link>https://xmpf.github.io/tags/whoami/</link>
     <description>Recent content in whoami on ☣ ishtar ☣</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://example.com/tags/whoami/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://xmpf.github.io/tags/whoami/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>$ id</title>
-      <link>https://example.com/about/</link>
+      <link>https://xmpf.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/about/</guid>
+      <guid>https://xmpf.github.io/about/</guid>
       <description>uid=1000(ishtar) gid=1000(ishtar) groups=1000(ishtar),1001(CYberMouflons)  WHY? I decided to create this blog in order to motivate myself and dig deeper in Cybersecurity - while trying to improve my English skills.</description>
     </item>
     

@@ -14,7 +14,7 @@
 <meta itemprop="name" content="CCSC 2021 - Ask Me Anything Writeup">
 <meta itemprop="description" content="Introduction This was my first pwn challenge and I needed some guidance in order to solve it.">
 
-<meta itemprop="wordCount" content="904">
+<meta itemprop="wordCount" content="910">
 <meta itemprop="keywords" content="pwn,ret2libc,pwntools,movaps," />
 
 <meta name="twitter:card" content="summary"/>
@@ -25,7 +25,7 @@
 <meta property="og:title" content="CCSC 2021 - Ask Me Anything Writeup" />
 <meta property="og:description" content="Introduction This was my first pwn challenge and I needed some guidance in order to solve it." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/posts/ccsc_ama/ccsc_ama/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/" /><meta property="article:section" content="posts" />
 
 
 
@@ -38,7 +38,7 @@
   "@graph": [
     {
       "@type":"Person",
-      "@id": "https://example.com#author",
+      "@id": "https://xmpf.github.io/#author",
       "name": "ishtar",
       "image": {
         "@type":"ImageObject",
@@ -49,25 +49,25 @@
     },
     {
       "@type": "WebSite",
-      "@id": "https://example.com#website",
-      "url": "https://example.com",
+      "@id": "https://xmpf.github.io/#website",
+      "url": "https://xmpf.github.io/",
       "name": "☣ ishtar ☣",
       "description": "988C 6C07 3240 2D14",
       "publisher": {
-        "@id": "https://example.com#author"
+        "@id": "https://xmpf.github.io/#author"
       },
       "inLanguage": "en-us"
     },
     {
       "@type": "WebPage",
-      "@id": "https://example.com/posts/ccsc_ama/ccsc_ama/#webpage",
-      "url": "https://example.com/posts/ccsc_ama/ccsc_ama/",
+      "@id": "https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/#webpage",
+      "url": "https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/",
       "name": "CCSC 2021 - Ask Me Anything Writeup",
       "isPartOf": {
-        "@id": "https://example.com#website"
+        "@id": "https://xmpf.github.io/#website"
       },
       "about": {
-         "@id": "https://example.com#author"
+         "@id": "https://xmpf.github.io/#author"
       },
       "description": "Introduction This was my first pwn challenge and I needed some guidance in order to solve it.",
       "inLanguage": "en-us",
@@ -75,7 +75,7 @@
         {
           "@type": "ReadAction",
           "target": [
-            "https://example.com/posts/ccsc_ama/ccsc_ama/"
+            "https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/"
           ]
         }
       ]
@@ -83,14 +83,14 @@
     {
       "@type": "Article",
       "isPartOf": {
-        "@id": "https://example.com/posts/ccsc_ama/ccsc_ama/#webpage"
+        "@id": "https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/#webpage"
       },
       "mainEntityOfPage": {
-        "@id": "https://example.com/posts/ccsc_ama/ccsc_ama/#webpage"
+        "@id": "https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/#webpage"
       },
       "headline": "CCSC 2021 - Ask Me Anything Writeup",
       "publisher": {
-        "@id": "https://example.com#author"
+        "@id": "https://xmpf.github.io/#author"
       },
       "keywords": [
         "pwn",
@@ -110,7 +110,7 @@
           "@type": "CommentAction",
           "name": "Comment",
           "target": [
-            "https://example.com/posts/ccsc_ama/ccsc_ama/#comments"
+            "https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/#comments"
           ]
         }
       ]
@@ -207,7 +207,7 @@
     <nav>
       <ul class="sidebar-nav">
         <li>
-          <a href="https://example.com">~</a>
+          <a href="https://xmpf.github.io/">~</a>
         </li>
         <li>
           <a href="/posts/">~/posts</a>
@@ -261,6 +261,7 @@ Stack:    No canary found
 NX:       NX enabled
 PIE:      No PIE (0x400000)
 </code></pre><ul>
+<li>Partial RELRO =&gt; GOT is writable</li>
 <li>NX</li>
 <li>NO PIE</li>
 <li>ASLR</li>
@@ -563,19 +564,19 @@ io<span style="color:#000;font-weight:bold">.</span>interactive()
 <div>
   <ul class="tags">
   <li>
-    <a href="https://example.com/tags/pwn/" class="tag-link">pwn</a>
+    <a href="https://xmpf.github.io/tags/pwn/" class="tag-link">pwn</a>
   </li>
   
   <li>
-    <a href="https://example.com/tags/ret2libc/" class="tag-link">ret2libc</a>
+    <a href="https://xmpf.github.io/tags/ret2libc/" class="tag-link">ret2libc</a>
   </li>
   
   <li>
-    <a href="https://example.com/tags/pwntools/" class="tag-link">pwntools</a>
+    <a href="https://xmpf.github.io/tags/pwntools/" class="tag-link">pwntools</a>
   </li>
   
   <li>
-    <a href="https://example.com/tags/movaps/" class="tag-link">movaps</a>
+    <a href="https://xmpf.github.io/tags/movaps/" class="tag-link">movaps</a>
   </li>
   </ul>
 </div>
@@ -586,31 +587,31 @@ io<span style="color:#000;font-weight:bold">.</span>interactive()
   <a class="twitter-share-button"
      href="#"
      title="Share on Twitter"
-     data-url="https://example.com/posts/ccsc_ama/ccsc_ama/"
+     data-url="https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/"
      data-text="CCSC 2021 - Ask Me Anything Writeup"><i class="fab fa-twitter"></i></a>
 
   <a class="linkedin-share-button"
      href="#"
      title="Share on LinkedIn"
-     data-url="https://example.com/posts/ccsc_ama/ccsc_ama/"
+     data-url="https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/"
      data-text="CCSC 2021 - Ask Me Anything Writeup"><i class="fab fa-linkedin-in"></i></a>
 
   <a class="facebook-share-button"
      href="#"
      title="Share on Facebook"
-     data-url="https://example.com/posts/ccsc_ama/ccsc_ama/"
+     data-url="https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/"
      data-text="CCSC 2021 - Ask Me Anything Writeup"><i class="fab fa-facebook"></i></a>
 
   <a class="telegram-share-button"
      href="#"
      title="Share on Telegram"
-     data-url="https://example.com/posts/ccsc_ama/ccsc_ama/"
+     data-url="https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/"
      data-text="CCSC 2021 - Ask Me Anything Writeup"><i class="fab fa-telegram"></i></a>
 
   <a class="pinterest-share-button"
      href="#"
      title="Share on Pinterest"
-     data-url="https://example.com/posts/ccsc_ama/ccsc_ama/"
+     data-url="https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/"
      data-text="CCSC 2021 - Ask Me Anything Writeup"><i class="fab fa-pinterest"></i></a>
 </div>
 

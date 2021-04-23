@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ccsc on ☣ ishtar ☣</title>
-    <link>https://example.com/tags/ccsc/</link>
+    <link>https://xmpf.github.io/tags/ccsc/</link>
     <description>Recent content in ccsc on ☣ ishtar ☣</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://example.com/tags/ccsc/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://xmpf.github.io/tags/ccsc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CCSC 2021 - PrivEsc Path Writeup</title>
-      <link>https://example.com/posts/ccsc_privesc/ccsc_privesc/</link>
+      <link>https://xmpf.github.io/posts/ccsc_privesc/ccsc_privesc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/posts/ccsc_privesc/ccsc_privesc/</guid>
+      <guid>https://xmpf.github.io/posts/ccsc_privesc/ccsc_privesc/</guid>
       <description>Introduction In this post I will present the intended solutions for the privilege escalation challenges, which I was the author of.</description>
     </item>
     
