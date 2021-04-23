@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>movaps on ☣ ishtar ☣</title>
-    <link>https://xmpf.github.io/tags/movaps/</link>
+    <link>https://mxpapad.me/tags/movaps/</link>
     <description>Recent content in movaps on ☣ ishtar ☣</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://xmpf.github.io/tags/movaps/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://mxpapad.me/tags/movaps/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CCSC 2021 - Ask Me Anything Writeup</title>
-      <link>https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/</link>
+      <link>https://mxpapad.me/posts/ccsc_ama/ccsc_ama/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/posts/ccsc_ama/ccsc_ama/</guid>
+      <guid>https://mxpapad.me/posts/ccsc_ama/ccsc_ama/</guid>
       <description>Introduction This was my first pwn challenge and I needed some guidance in order to solve it.</description>
     </item>
     

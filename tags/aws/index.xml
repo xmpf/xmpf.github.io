@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>aws on ☣ ishtar ☣</title>
-    <link>https://xmpf.github.io/tags/aws/</link>
+    <link>https://mxpapad.me/tags/aws/</link>
     <description>Recent content in aws on ☣ ishtar ☣</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://xmpf.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://mxpapad.me/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cloud Security - AWS Enumeration</title>
-      <link>https://xmpf.github.io/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/</link>
+      <link>https://mxpapad.me/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/</guid>
+      <guid>https://mxpapad.me/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/</guid>
       <description>Lab Description In this era of cloud computing, from individuals, enterprises to large conglomerates, everyone is migrating towards the cloud.</description>
     </item>
     

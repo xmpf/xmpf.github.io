@@ -2,151 +2,151 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on ☣ ishtar ☣</title>
-    <link>https://xmpf.github.io/tags/</link>
+    <link>https://mxpapad.me/tags/</link>
     <description>Recent content in Tags on ☣ ishtar ☣</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://xmpf.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://mxpapad.me/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>attackdefense</title>
-      <link>https://xmpf.github.io/tags/attackdefense/</link>
+      <link>https://mxpapad.me/tags/attackdefense/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/attackdefense/</guid>
+      <guid>https://mxpapad.me/tags/attackdefense/</guid>
       <description></description>
     </item>
     
     <item>
       <title>aws</title>
-      <link>https://xmpf.github.io/tags/aws/</link>
+      <link>https://mxpapad.me/tags/aws/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/aws/</guid>
+      <guid>https://mxpapad.me/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>capabilities</title>
-      <link>https://xmpf.github.io/tags/capabilities/</link>
+      <link>https://mxpapad.me/tags/capabilities/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/capabilities/</guid>
+      <guid>https://mxpapad.me/tags/capabilities/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ccsc</title>
-      <link>https://xmpf.github.io/tags/ccsc/</link>
+      <link>https://mxpapad.me/tags/ccsc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/ccsc/</guid>
+      <guid>https://mxpapad.me/tags/ccsc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>cloud security</title>
-      <link>https://xmpf.github.io/tags/cloud-security/</link>
+      <link>https://mxpapad.me/tags/cloud-security/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/cloud-security/</guid>
+      <guid>https://mxpapad.me/tags/cloud-security/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ctf</title>
-      <link>https://xmpf.github.io/tags/ctf/</link>
+      <link>https://mxpapad.me/tags/ctf/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/ctf/</guid>
+      <guid>https://mxpapad.me/tags/ctf/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>https://xmpf.github.io/tags/docker/</link>
+      <link>https://mxpapad.me/tags/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/docker/</guid>
+      <guid>https://mxpapad.me/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>enumeration</title>
-      <link>https://xmpf.github.io/tags/enumeration/</link>
+      <link>https://mxpapad.me/tags/enumeration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/enumeration/</guid>
+      <guid>https://mxpapad.me/tags/enumeration/</guid>
       <description></description>
     </item>
     
     <item>
       <title>faq</title>
-      <link>https://xmpf.github.io/tags/faq/</link>
+      <link>https://mxpapad.me/tags/faq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/faq/</guid>
+      <guid>https://mxpapad.me/tags/faq/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ld.so.preload</title>
-      <link>https://xmpf.github.io/tags/ld.so.preload/</link>
+      <link>https://mxpapad.me/tags/ld.so.preload/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/ld.so.preload/</guid>
+      <guid>https://mxpapad.me/tags/ld.so.preload/</guid>
       <description></description>
     </item>
     
     <item>
       <title>movaps</title>
-      <link>https://xmpf.github.io/tags/movaps/</link>
+      <link>https://mxpapad.me/tags/movaps/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/movaps/</guid>
+      <guid>https://mxpapad.me/tags/movaps/</guid>
       <description></description>
     </item>
     
     <item>
       <title>privesc</title>
-      <link>https://xmpf.github.io/tags/privesc/</link>
+      <link>https://mxpapad.me/tags/privesc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/privesc/</guid>
+      <guid>https://mxpapad.me/tags/privesc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pwn</title>
-      <link>https://xmpf.github.io/tags/pwn/</link>
+      <link>https://mxpapad.me/tags/pwn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/pwn/</guid>
+      <guid>https://mxpapad.me/tags/pwn/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pwntools</title>
-      <link>https://xmpf.github.io/tags/pwntools/</link>
+      <link>https://mxpapad.me/tags/pwntools/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/pwntools/</guid>
+      <guid>https://mxpapad.me/tags/pwntools/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ret2libc</title>
-      <link>https://xmpf.github.io/tags/ret2libc/</link>
+      <link>https://mxpapad.me/tags/ret2libc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/ret2libc/</guid>
+      <guid>https://mxpapad.me/tags/ret2libc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>whoami</title>
-      <link>https://xmpf.github.io/tags/whoami/</link>
+      <link>https://mxpapad.me/tags/whoami/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://xmpf.github.io/tags/whoami/</guid>
+      <guid>https://mxpapad.me/tags/whoami/</guid>
       <description></description>
     </item>
     
