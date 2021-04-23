@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.82.0" />
+
+  <title>Cloud Security - AWS Enumeration &middot; ☣ ishtar ☣</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Cloud Security - AWS Enumeration">
+<meta itemprop="description" content="Lab Description In this era of cloud computing, from individuals, enterprises to large conglomerates, everyone is migrating towards the cloud.">
+
+<meta itemprop="wordCount" content="578">
+<meta itemprop="keywords" content="attackdefense,aws,cloud security,enumeration," />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cloud Security - AWS Enumeration"/>
+<meta name="twitter:description" content="Lab Description In this era of cloud computing, from individuals, enterprises to large conglomerates, everyone is migrating towards the cloud."/>
+
+
+<meta property="og:title" content="Cloud Security - AWS Enumeration" />
+<meta property="og:description" content="Lab Description In this era of cloud computing, from individuals, enterprises to large conglomerates, everyone is migrating towards the cloud." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/" /><meta property="article:section" content="posts" />
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://example.com#author",
+      "name": "ishtar",
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "988C 6C07 3240 2D14"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://example.com#website",
+      "url": "https://example.com",
+      "name": "☣ ishtar ☣",
+      "description": "988C 6C07 3240 2D14",
+      "publisher": {
+        "@id": "https://example.com#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/#webpage",
+      "url": "https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/",
+      "name": "Cloud Security - AWS Enumeration",
+      "isPartOf": {
+        "@id": "https://example.com#website"
+      },
+      "about": {
+         "@id": "https://example.com#author"
+      },
+      "description": "Lab Description In this era of cloud computing, from individuals, enterprises to large conglomerates, everyone is migrating towards the cloud.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/#webpage"
+      },
+      "headline": "Cloud Security - AWS Enumeration",
+      "publisher": {
+        "@id": "https://example.com#author"
+      },
+      "keywords": [
+        "attackdefense",
+        "aws",
+        "enumeration"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name": "ishtar"
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #333333;
+  }
+
+  .read-more-link a {
+    border-color: #333333;
+  }
+
+  .read-more-link a:hover {
+    background-color: #333333;
+  }
+
+  .pagination li a {
+    color: #333333;
+    border: 1px solid #333333;
+  }
+
+  .pagination li.active a {
+    background-color: #333333;
+  }
+
+  .pagination li a:hover {
+    background-color: #333333;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #333333;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>☣ ishtar ☣</h1>
+
+      
+      <p class="lead">988C 6C07 3240 2D14</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://example.com">~</a>
+        </li>
+        <li>
+          <a href="/posts/">~/posts</a>
+        </li><li>
+          <a href="/about/">~/about</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://www.linkedin.com/in/michalis-papadopoullos/" rel="me" title="Linkedin" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/xmpf" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/megatr0nz" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Cloud Security - AWS Enumeration</h1>
+  
+
+  <div class="post-date">
+  </div>
+
+  <div>
+  <h2 id="lab-description">Lab Description</h2>
+<p>In this era of cloud computing, from individuals, enterprises to large conglomerates, everyone is migrating towards the cloud. With this comes an unseen threat because Cloud environments are different from the traditional infrastructure.</p>
+<p>With millions of active customers, Amazon Web Services (AWS) is one of the most popular cloud service providers, and due to the same reason, it is of prime importance to hackers. Gaining access to one such corporate AWS account can cost a company billions of dollars.</p>
+<p>Objective: Using the access credentials, enumerate the S3 buckets present on the AWS account.</p>
+<hr>
+<p>Access Credentials to your AWS Lab Account</p>
+<ul>
+<li>Login URL: <a href="https://276384657722.signin.aws.amazon.com/console">https://276384657722.signin.aws.amazon.com/console</a></li>
+<li>Region: Asia Pacific (Singapore) ap-southeast-1</li>
+<li>Username: REDACTED</li>
+<li>Password: REDACTED</li>
+<li>Access Key ID: REDACTED</li>
+<li>Secret Access Key: REDACTED</li>
+</ul>
+<hr>
+<p>Add the above in the <code>~/.aws/credentials</code> file as below:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-yml" data-lang="yml">[attackdefense1]<span style="color:#bbb">
+</span><span style="color:#bbb"></span>aws_access_key_id = REDACTED<span style="color:#bbb">
+</span><span style="color:#bbb"></span>aws_secret_access_key = REDACTED<span style="color:#bbb">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>What to look for, when enumerating S3 Buckets:</p>
+<ul>
+<li>Object Versions</li>
+<li>AWS Regions (be sure to check them all / Storage Lens)</li>
+<li>Bucket Versioning</li>
+<li>Default Encryption</li>
+<li>Server access logging</li>
+<li>Permissions
+<ul>
+<li>Permission overview</li>
+<li>Object ownership</li>
+<li>Access control list (ACL)
+<ul>
+<li>Everyone (public access)</li>
+<li>Authenticated users group (anyone with an AWS account)</li>
+</ul>
+</li>
+<li>Cross-origin resource sharing (CORS)</li>
+</ul>
+</li>
+<li>Metrics
+<ul>
+<li>Bucket metrics (Find changes easily from the graph)</li>
+<li>Replication metrics</li>
+</ul>
+</li>
+<li>Management
+<ul>
+<li>Replication rules</li>
+</ul>
+</li>
+</ul>
+<pre><code>$ aws --profile attackdefense1 s3 ls --region ap-southeast-1
+
+2020-12-21 04:46:25 attackdefense-discover-bucket                         
+2020-10-29 17:53:54 data-extractor-repo
+2020-12-21 05:10:59 developers-secret-bucket
+2021-03-12 14:16:16 file-uploader-saved-files
+2020-12-05 10:24:53 insecurecorp-code
+2020-12-05 10:23:14 insecurecorp-customer
+2020-12-05 10:25:59 insecurecorp-documents
+2021-03-05 08:59:02 ipcalc
+2021-01-01 08:58:00 ipcalc-flag
+2021-02-26 14:19:40 ipcalc-persistance
+2021-03-05 09:00:23 ipcalc-with-login
+2021-01-01 05:14:59 lab-private-backup-resource
+2021-01-01 05:13:45 lab-webapp-static-resource
+2020-12-18 15:10:56 lab-webapp-static-resources
+2020-12-31 12:18:54 owasp-top-10-flags
+2021-03-13 22:28:41 s3-special-request
+2020-12-21 04:53:59 serverless-ctf-flags
+2020-12-21 04:57:36 shared-bucket-for-applications
+2021-02-27 03:23:07 ssrf-flag
+2020-12-21 04:58:36 temporary-public-image-store
+2021-04-10 12:46:38 test-bootcamp-12341234
+2020-12-21 05:00:50 users-personal-files
+</code></pre><p><img src="blog/static/ad_cloud_security_aws_1/s3_web_ui.png" alt=""></p>
+<p>Using this one-liner we can download all repositories (we have access to) in order to examine their content:</p>
+<pre><code>$ for i in `cat ad1.dirs`; do echo &quot;Checking $i ...\n&quot;; aws --profile attackdefense1 s3 sync &quot;s3://$i&quot; &quot;$i/&quot; --region ap-southeast-1 ; done
+</code></pre><ul>
+<li>
+<p>In the <code>file-uploader-saved-files</code> repo, there is a file called <code>flag</code>:
+<code>643a3866a6a360a70219f7e387a1e528</code></p>
+</li>
+<li>
+<p>In the <code>data-extractor-repo</code> repo, inside <code>DataExtractor.zip</code> file there is the following lambda function code:</p>
+</li>
+</ul>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">json</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">boto3</span>
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">botocore.config</span> <span style="color:#000;font-weight:bold">import</span> Config
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">botocore.exceptions</span> <span style="color:#000;font-weight:bold">import</span> ClientError
+
+GLOBAL_CONFIG <span style="color:#000;font-weight:bold">=</span> Config(
+    region_name <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;us-east-1&#39;</span>,
+    signature_version <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;v4&#39;</span>,
+    retries <span style="color:#000;font-weight:bold">=</span> {
+        <span style="color:#d14">&#39;max_attempts&#39;</span>: <span style="color:#099">5</span>,
+        <span style="color:#d14">&#39;mode&#39;</span>: <span style="color:#d14">&#39;standard&#39;</span>
+    }
+)
+
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">getDataFromDynamoDB</span>(tblName, searchFor, operator):
+    client <span style="color:#000;font-weight:bold">=</span> boto3<span style="color:#000;font-weight:bold">.</span>client(<span style="color:#d14">&#34;dynamodb&#34;</span>, config <span style="color:#000;font-weight:bold">=</span> GLOBAL_CONFIG)
+    response <span style="color:#000;font-weight:bold">=</span> { <span style="color:#d14">&#34;Items&#34;</span>: [] }
+
+    <span style="color:#000;font-weight:bold">try</span>:
+        response <span style="color:#000;font-weight:bold">=</span> client<span style="color:#000;font-weight:bold">.</span>scan(TableName <span style="color:#000;font-weight:bold">=</span> tblName, Select <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;ALL_ATTRIBUTES&#39;</span>, 
+            ScanFilter <span style="color:#000;font-weight:bold">=</span> {
+                <span style="color:#d14">&#34;CardHolder&#34;</span>: {
+                    <span style="color:#d14">&#34;AttributeValueList&#34;</span>: [
+                        {
+                            <span style="color:#d14">&#34;S&#34;</span>: searchFor
+                        }
+                    ],
+                    <span style="color:#d14">&#34;ComparisonOperator&#34;</span>: operator
+                }
+            }
+        )
+    <span style="color:#000;font-weight:bold">except</span>:
+        <span style="color:#000;font-weight:bold">return</span> { <span style="color:#d14">&#34;error&#34;</span>: <span style="color:#d14">&#34;some exception occured!&#34;</span> }
+    <span style="color:#000;font-weight:bold">return</span> response[<span style="color:#d14">&#34;Items&#34;</span>]
+
+<span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">lambda_handler</span>(event, context):
+
+    response <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">None</span>
+
+    params <span style="color:#000;font-weight:bold">=</span> json<span style="color:#000;font-weight:bold">.</span>loads(event[<span style="color:#d14">&#34;body&#34;</span>])
+
+    <span style="color:#000;font-weight:bold">if</span> params <span style="color:#000;font-weight:bold">==</span> <span style="color:#999">None</span>:
+        response <span style="color:#000;font-weight:bold">=</span> { <span style="color:#d14">&#34;msg&#34;</span>: <span style="color:#d14">&#34;error: missing parameters&#34;</span> }
+    <span style="color:#000;font-weight:bold">else</span>:
+        CardHolder <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">None</span>
+        TableName <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;CardDetails&#34;</span>
+        Operator <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;EQ&#34;</span>
+
+        <span style="color:#000;font-weight:bold">if</span> <span style="color:#d14">&#34;CardHolder&#34;</span> <span style="color:#000;font-weight:bold">in</span> params:
+            CardHolder <span style="color:#000;font-weight:bold">=</span> params[<span style="color:#d14">&#34;CardHolder&#34;</span>]
+        <span style="color:#000;font-weight:bold">else</span>:
+            response <span style="color:#000;font-weight:bold">=</span> { <span style="color:#d14">&#34;msg&#34;</span>: <span style="color:#d14">&#34;error: missing parameters: CardHolder (required)&#34;</span> }
+
+        <span style="color:#000;font-weight:bold">if</span> response <span style="color:#000;font-weight:bold">==</span> <span style="color:#999">None</span>:
+            response <span style="color:#000;font-weight:bold">=</span> getDataFromDynamoDB(tblName <span style="color:#000;font-weight:bold">=</span> TableName, searchFor <span style="color:#000;font-weight:bold">=</span> CardHolder, operator <span style="color:#000;font-weight:bold">=</span> Operator)
+
+    <span style="color:#998;font-style:italic"># Won&#39;t happen for sure!</span>
+    <span style="color:#000;font-weight:bold">if</span> response <span style="color:#000;font-weight:bold">==</span> <span style="color:#999">None</span>:
+        response <span style="color:#000;font-weight:bold">=</span> { <span style="color:#d14">&#34;msg&#34;</span>: <span style="color:#d14">&#34;no records found&#34;</span> }
+
+    <span style="color:#000;font-weight:bold">return</span> {
+        <span style="color:#d14">&#34;statusCode&#34;</span>: <span style="color:#099">200</span>,
+        <span style="color:#d14">&#34;body&#34;</span>: json<span style="color:#000;font-weight:bold">.</span>dumps(response)
+    }
+</code></pre></td></tr></table>
+</div>
+</div>
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="https://example.com/tags/attackdefense/" class="tag-link">attackdefense</a>
+  </li>
+  
+  <li>
+    <a href="https://example.com/tags/aws/" class="tag-link">aws</a>
+  </li>
+  
+  <li>
+    <a href="https://example.com/tags/enumeration/" class="tag-link">enumeration</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/"
+     data-text="Cloud Security - AWS Enumeration"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/"
+     data-text="Cloud Security - AWS Enumeration"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/"
+     data-text="Cloud Security - AWS Enumeration"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/"
+     data-text="Cloud Security - AWS Enumeration"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/"
+     data-text="Cloud Security - AWS Enumeration"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy; ishtar 2021
+
+      &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+  
+</body>
+</html>

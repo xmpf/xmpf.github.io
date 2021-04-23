@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on ☣ ishtar ☣</title>
+    <link>https://example.com/tags/</link>
+    <description>Recent content in Tags on ☣ ishtar ☣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>attackdefense</title>
+      <link>https://example.com/tags/attackdefense/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/attackdefense/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://example.com/tags/aws/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>capabilities</title>
+      <link>https://example.com/tags/capabilities/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/capabilities/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ccsc</title>
+      <link>https://example.com/tags/ccsc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/ccsc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cloud security</title>
+      <link>https://example.com/tags/cloud-security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/cloud-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ctf</title>
+      <link>https://example.com/tags/ctf/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/ctf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https://example.com/tags/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>enumeration</title>
+      <link>https://example.com/tags/enumeration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/enumeration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>faq</title>
+      <link>https://example.com/tags/faq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/faq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ld.so.preload</title>
+      <link>https://example.com/tags/ld.so.preload/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/ld.so.preload/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>movaps</title>
+      <link>https://example.com/tags/movaps/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/movaps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>privesc</title>
+      <link>https://example.com/tags/privesc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/privesc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pwn</title>
+      <link>https://example.com/tags/pwn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/pwn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pwntools</title>
+      <link>https://example.com/tags/pwntools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/pwntools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ret2libc</title>
+      <link>https://example.com/tags/ret2libc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/ret2libc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>whoami</title>
+      <link>https://example.com/tags/whoami/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/tags/whoami/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

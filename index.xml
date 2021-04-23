@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>☣ ishtar ☣</title>
+    <link>https://example.com/</link>
+    <description>Recent content on ☣ ishtar ☣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>$ id</title>
+      <link>https://example.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/about/</guid>
+      <description>uid=1000(ishtar) gid=1000(ishtar) groups=1000(ishtar),1001(CYberMouflons)  WHY? I decided to create this blog in order to motivate myself and dig deeper in Cybersecurity - while trying to improve my English skills.</description>
+    </item>
+    
+    <item>
+      <title>CCSC 2021 - Ask Me Anything Writeup</title>
+      <link>https://example.com/posts/ccsc_ama/ccsc_ama/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/ccsc_ama/ccsc_ama/</guid>
+      <description>Introduction This was my first pwn challenge and I needed some guidance in order to solve it.</description>
+    </item>
+    
+    <item>
+      <title>CCSC 2021 - PrivEsc Path Writeup</title>
+      <link>https://example.com/posts/ccsc_privesc/ccsc_privesc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/ccsc_privesc/ccsc_privesc/</guid>
+      <description>Introduction In this post I will present the intended solutions for the privilege escalation challenges, which I was the author of.</description>
+    </item>
+    
+    <item>
+      <title>Cloud Security - AWS Enumeration</title>
+      <link>https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/ad_cloud_security_aws_1/ad_cloud_security_aws_1/</guid>
+      <description>Lab Description In this era of cloud computing, from individuals, enterprises to large conglomerates, everyone is migrating towards the cloud.</description>
+    </item>
+    
+  </channel>
+</rss>
