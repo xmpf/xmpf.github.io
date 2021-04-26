@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>oob on ☣ ishtar ☣</title>
+    <link>https://mxpapad.me/tags/oob/</link>
+    <description>Recent content in oob on ☣ ishtar ☣</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://mxpapad.me/tags/oob/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advanced XXE Labs (GoSecure)</title>
+      <link>https://mxpapad.me/posts/xxe_workshop/xxe_workshop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mxpapad.me/posts/xxe_workshop/xxe_workshop/</guid>
+      <description>GoSecure has released an amazing set of exercises, related to XXE (XML eXternal Entity) attacks.</description>
+    </item>
+    
+  </channel>
+</rss>
