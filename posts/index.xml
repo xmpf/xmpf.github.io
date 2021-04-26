@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://mxpapad.me/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Advanced XXE Labs (GoSecure)</title>
+      <link>https://mxpapad.me/posts/xxe_workshop/xxe_workshop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mxpapad.me/posts/xxe_workshop/xxe_workshop/</guid>
+      <description>GoSecure has released an amazing set of exercises, related to XXE (XML eXternal Entity) attacks.</description>
+    </item>
+    
+    <item>
       <title>CCSC 2021 - Ask Me Anything Writeup</title>
       <link>https://mxpapad.me/posts/ccsc_ama/ccsc_ama/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
