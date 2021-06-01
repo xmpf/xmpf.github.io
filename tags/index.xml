@@ -97,6 +97,15 @@
     </item>
     
     <item>
+      <title>ghidra</title>
+      <link>https://mxpapad.me/tags/ghidra/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mxpapad.me/tags/ghidra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>gosecure</title>
       <link>https://mxpapad.me/tags/gosecure/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -111,6 +120,15 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mxpapad.me/tags/gtfobins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hackadayu</title>
+      <link>https://mxpapad.me/tags/hackadayu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mxpapad.me/tags/hackadayu/</guid>
       <description></description>
     </item>
     
@@ -201,6 +219,24 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://mxpapad.me/tags/ret2libc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reversing</title>
+      <link>https://mxpapad.me/tags/reversing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mxpapad.me/tags/reversing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sre</title>
+      <link>https://mxpapad.me/tags/sre/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mxpapad.me/tags/sre/</guid>
       <description></description>
     </item>
     
