@@ -1,0 +1,28 @@
+baseurl = "/"
+languageCode = 'en-us'
+title = 'Android Malware Analysis'
+theme = 'terminal'
+
+[params]
+  contentTypeName = "posts"
+  showMenuItems = 2
+  fullWidthTheme = true
+  GitHubUser = 'xmpf'
+  TwitterUser = 'megatr0nz'
+  author = '0x1shtar'
+
+  [params.widgets]
+    search = true
+    tags = true
+    categories = true
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 8
+    startLevel = 1
+  [markup.highlight]
+    style = "solarized-dark" 
+
+[permalinks]
+  posts = '/:title:/'
+
