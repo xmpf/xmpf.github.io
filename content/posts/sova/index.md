@@ -268,7 +268,7 @@ Android generates a `SMS_RECEIVED` broadcast when a new SMS is received.  The ma
 
 #### Main Activity
 
-The main activity of the application: `com.devapprove.a.ru.news.ui.LauncherActivity` which is not found the `classes.dex`. So this an indication that the malware is packed and other classes will be loaded into application at run-time.
+The main activity of the application is `com.devapprove.a.ru.news.ui.LauncherActivity` which is not found in the `classes.dex`. This an indication that the malware is packed and other classes will be loaded into the application's process memory at run-time.
 
 > Packers typically encrypt the original `classes.dex` file and embed code (stub) which decrypts the DEX file at runtime and executes it using `DexClassLoader` class.
 
