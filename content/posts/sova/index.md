@@ -432,7 +432,7 @@ class Main {
 
 ![decrypted-dexpath](./media/decrypted-dexpath.png)
 
-![](encrypted-dex.png)
+![](./media/encrypted-dex.png)
 
 > How to decrypt that file ??
 
@@ -440,11 +440,11 @@ class Main {
 
 Install the malicious APK to the emulator:
 
-![](malware-icon.png)
+![](./media/malware-icon.png)
 
 When the malicious application is spawned it prompts the user to enable the Accessibility permissions:
 
-![](enable-accessibility-features.png)
+![](./media/enable-accessibility-features.png)
 
 The following data are sent to the C2 at `satandemantenimiento.com`.
 
@@ -472,11 +472,11 @@ botid=4dddcd2334122d7ee728&text=%5B%22%7B%5C%22type%5C%22%3A%5C%22INFO%5C%22%2C%
 
 Using Accessibility features, the malware can view and control the screen and imitate user activity.
 
-![](accessibility-permissions.png)
+![](./media/accessibility-permissions.png)
 
 The malware does not delete the decrypted DEX file after loading it into the process memory and therefore we can easily obtain it from the application's data folder:
 
-![](local-storage.png)
+![](./media/local-storage.png)
 
 Alternatively, we can use Frida to hook the `DexClassLoader` class and print the path of the loaded file - the first parameter passed to the `DexClassLoader` constructor.
 
@@ -497,7 +497,7 @@ dexclassLoader.$init.implementation = function(a,b,c,d) {
 }
 ```
 
-![](frida.png)
+![](./media/frida.png)
 
 Copy the decrypted DEX file to `/data/local/tmp` and download to the host machine using `adb pull` for further analysis.
 
@@ -505,7 +505,7 @@ Copy the decrypted DEX file to `/data/local/tmp` and download to the host machin
 
 Import the dropped DEX file into Jadx-GUI:
 
-![](dropped-dex-jadx.png)
+![](./media/dropped-dex-jadx.png)
 
 SOVA malware employs the following open-source [project](https://github.com/sonuauti/Android-Web-Server) to exfiltrate data to the C2 server.
 
