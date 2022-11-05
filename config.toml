@@ -6,7 +6,12 @@ theme = 'terminal'
 [params]
   contentTypeName = "posts"
   showMenuItems = 2
-  fullWidthTheme = true
+  
+  fullWidthTheme = false
+  centerTheme = true
+  Toc = true
+  readingTime = false
+
   GitHubUser = 'xmpf'
   TwitterUser = 'megatr0nz'
   author = '0x1shtar'
@@ -17,11 +22,16 @@ theme = 'terminal'
     categories = true
 
 [markup]
+
   [markup.tableOfContents]
     endLevel = 8
     startLevel = 1
+
   [markup.highlight]
-    style = "solarized-dark" 
+    style = "monokai"
+    codeFences = true
+    tabWidth = 2
+    lineNoStart = 1
 
 [permalinks]
   posts = '/:title:/'
