@@ -2,7 +2,7 @@
 title: SOVA Android Trojan
 author: 0xishtar
 include_toc: true
-description: Malware analysis of the SOVA Android malware.
+description: Analysis of the SOVA Android malware.
 ---
 
 ## AndroidManifest.xml
