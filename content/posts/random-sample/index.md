@@ -2,7 +2,7 @@
 title: Malware analysis of a random sample (WIP)
 author: 0xishtar
 description: This is a Work-in-Progress expect changes
-include_toc: true
+include_toc: true^2](^2)
 ---
 
 ## Sample details
@@ -20,11 +20,13 @@ Check If traffic is observed to the following C2 addresses or the following file
 - `http://andmon.name`
 - `http://prog-money.com`
 - `http://anmon.name`
-- `https://anmon.ru`
+- `https://anmon.ru` 
 
 ## AndroidManifest.xml
 
 The Android manifest file provides information such as activities, services, broadcast receivers, and content providers of an android application. It's the file that will give us a first overview of the application under test.
+
+> Components can be made public by explicitly setting the `exported` attribute to `true`, or implicitly by declaring an intent filter. Such components made private by explicitly setting the `exported` attribute to `false`.
 
 #### Package name
 
@@ -37,6 +39,18 @@ The package name will help us trace the application's code in the decompiled `cl
 The application's private data will reside in `/data/data/cihb.hhsey`.
 
 ![](media/pkg-name.png)
+
+```xml
+<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="22"/>
+```
+
+- `minSdkVersion`
+The minimum API Level required for the application to run. The Android system will prevent the user from installing the application if the system's API Level is lower than the value specified in this attribute.
+
+- `targetSdkVersion`
+Highest API version that the application has been tested and supports.
+
+![](media/supported-api-levels.png)
 
 #### Application
 
@@ -56,13 +70,17 @@ The icon of the application is defined in the `AndroidManifest.xml` as `android:
 
 ![](media/app-icon.png)
 
-The application also uses `sharedUserId="android.uid.system"`. This implies that it tries to install itself as a system application `uid = 1000` - which doesn't really makes sense to me now as it must be signed with the same certificate as the rest of the system apps.
+The application also uses `sharedUserId="android.uid.system"`. This implies that it tries to install itself as a system application `uid = 1000` - which doesn't really makes sense to me now as it must be signed with the same certificate as the rest of the system apps. It should be noted that applications running with the same shared user id, run under the same process and can access each other's data.
 
 `allowBackup="true"` is also included in the manifest. This might allow the malware to persist across a backup and restore operation.
 
-Of course, it also uses `requestLegacyExternalStorage="true"` in order to opt-out scoped storage and be able to access all files in external storage. It should be noted that applications running with the same shared user id, run under the same process and can access each other's data.
+Of course, it also uses `requestLegacyExternalStorage="true"` in order to opt-out scoped storage and be able to access all files in external storage.
 
 #### Permissions
+
+> Applications request permissions by adding one or more `<uses-permission>`  tags in their `AndroidManifest.xml` file and can define new permissions with the  `<permission>` tag.
+
+The application specifies system permissions the user must grant in order for the app to operate correctly. Permissions are granted by the user when the application is installed (on devices running Android 5.1 and lower) or while the app is running (on devices running Android 6.0 and higher). -- [Docs](https://developer.android.com/guide/topics/manifest/uses-permission-element)
 
 ```xml
 <permission android:name="android.monitor.permission.ANDROID_MONITOR_CHECKER" android:protectionLevel="signature"/>
@@ -148,7 +166,48 @@ Of course, it also uses `requestLegacyExternalStorage="true"` in order to opt-ou
 <uses-permission android:name="android.monitor.permission.ANDROID_MONITOR_CHECKER"/>
 ```
 
-The application requests a ton of permissions.
+The application requests a ton of permissions. For more information about each permission requested refer to the [documentation](https://developer.android.com/reference/android/Manifest.permission).
+
+Below I will analyze some of them.
+
+- `android.permission.RECEIVE_BOOT_COMPLETED`
+Allows the app to have itself started as soon as the system has finished booting.
+
+- `android.permission.RECEIVE_SMS`
+Allows the app to receive and process SMS messages. This means the app could monitor or delete messages sent to your device without showing them to you.
+
+- `android.permission.READ_LOGS`
+Allows the app to read from the system's various log files. This allows it to discover general information about what you are doing with the phone, potentially including personal or private information.
+
+- `android.permission.ACCESS_FINE_LOCATION`
+Allows the app to get your precise location using the Global Positioning System (GPS) or network location sources such as cell towers and Wi-Fi.
+
+- `android.permission.INTERNET`
+Allows the app to create network sockets and use custom network protocols.
+
+- `android.permission.READ_EXTERNAL_STORAGE`
+- `android.permission.WRITE_EXTERNAL_STORAGE`
+Allows the app to read and write to the SD card.
+
+- `android.permission.REQUEST_INSTALL_PACKAGES`
+Allows an application to request installing packages.
+
+- `android.permission.RECORD_AUDIO`
+Allows an application to record audio.
+
+- `android.permission.WRITE_SECURE_SETTINGS`
+Allows the app to modify the system's secure settings data.
+
+- `android.permission.WAKE_LOCK`
+Allows the app to prevent the phone from going to sleep.
+
+- `android.permission.QUERY_ALL_PACKAGES`
+Allows query of any normal app on the device, regardless of manifest declarations.
+
+- `android.permission.MANAGE_DEVICE_ADMINS`
+Required to add or remove another application as a device admin.
+
+> Note: When an Android application is installed, it is assignned a unique UID. If additional permissions granted to the application, they are assigned as supplementary GIDs to the process. For example, an application that asks for `INTERNET` permission, is added to the `inet` group.
 
 #### MainActivity
 
@@ -165,7 +224,7 @@ We locate the main activity, which is launched when the user clicks on the appli
 
 #### Services
 
-A Service is an application component that can perform long-running operations in the background.
+> A service is a component that runs in the background and has no user interface. Services are typically used to perform some long-running operation, such as downloading a file or playing music, without blocking the user interface.
 
 - The `android:name` attribute specifies the class name of the service.
 - Due to `exported="true"` it allows other applications to start the service.
@@ -212,6 +271,8 @@ In `res/xml/accessibilityservice.xml`:
 ```
 
 #### Broadcast Receivers
+
+> A broadcast receiver is a component that responds to systemwide events, called broadcasts. Broadcasts can originate from the system or from a user application.
 
 **Reboot**
 
@@ -761,3 +822,4 @@ Some examples include:
 ## References
 
 - https://android.googlesource.com/platform/frameworks/base/+/refs/heads/master
+- https://www.amazon.com/Android-Security-Internals-Depth-Architecture/dp/1593275811
