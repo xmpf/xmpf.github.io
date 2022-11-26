@@ -2,6 +2,7 @@ baseurl = "/"
 languageCode = 'en-us'
 title = 'Android Malware Analysis'
 theme = 'terminal'
+googleAnalytics = 'G-P1SJVVX6K1'
 
 [params]
   contentTypeName = "posts"
