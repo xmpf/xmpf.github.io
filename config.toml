@@ -1,6 +1,6 @@
 baseurl = "/"
 languageCode = 'en-us'
-title = 'Android Malware Analysis'
+title = '0xishtar@temple'
 theme = 'terminal'
 googleAnalytics = 'G-P1SJVVX6K1'
 
@@ -15,7 +15,7 @@ googleAnalytics = 'G-P1SJVVX6K1'
 
   GitHubUser = 'xmpf'
   TwitterUser = 'megatr0nz'
-  author = '0x1shtar'
+  author = '0xishtar'
 
   [params.widgets]
     search = true
