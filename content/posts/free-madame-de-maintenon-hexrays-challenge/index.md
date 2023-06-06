@@ -168,11 +168,9 @@ $ pip install -U z3-solver
 **Solution**
 
 ```python
-import string
 from z3 import *
 
 TOTAL_ITEMS = 24
-ALPHABET = string.printable
 
 u16 = lambda x, y: Concat(x[y + 1], x[y])
 u32 = lambda x, y: Concat(x[y + 3], x[y + 2], x[y + 1], x[y])
