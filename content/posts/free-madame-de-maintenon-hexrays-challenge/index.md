@@ -155,7 +155,7 @@ if ((buffer._16_8_ ^ buffer._8_8_) != 0x231f0b21595d0455) goto L_ERROR;
 
 If all of the above checks succeed, then the application decrypts the blob found at offset `0x000711e0` and as shown in the decompiled view at `part:0x06` will load the correct PNG image.
 
-Thus, it is possible to bypass the decryption logic and let the application present us the image by solving the constraints enforced by the above checks.
+We can avoid reversing the decryption logic and let the application present us the image by solving the constraints enforced in the above checks.
 
 [Z3 SMT](https://github.com/Z3Prover/z3) can be used to achieve this:
 
