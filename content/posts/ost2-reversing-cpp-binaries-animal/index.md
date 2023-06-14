@@ -1,7 +1,8 @@
 ---
-title: Reverse Engineering 3011: Reversing C++ Binaries
+title: Reverse Engineering 3011 - Reversing C++ Binaries
 author: 0xishtar
-description: Reverse Engineering 3011: Reversing C++ Binaries (https://p.ost2.fyi/)
+include_toc: true
+description: Reverse Engineering 3011 - Reversing C++ Binaries (https://p.ost2.fyi/)
 ---
 
 ## General
