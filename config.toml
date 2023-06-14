@@ -17,6 +17,9 @@ googleAnalytics = 'G-P1SJVVX6K1'
   TwitterUser = 'megatr0nz'
   author = '0xishtar'
 
+  [params.footer]
+    copyright = "© all rights reversed" 
+
   [params.widgets]
     search = true
     tags = true
@@ -29,11 +32,11 @@ googleAnalytics = 'G-P1SJVVX6K1'
     startLevel = 1
 
   [markup.highlight]
-    style = "monokai"
+    style = "gruvbox"
     codeFences = true
     tabWidth = 2
     lineNoStart = 1
 
 [permalinks]
-  posts = '/:title:/'
+  posts = '/:year:/:month:/:title:/'
 
