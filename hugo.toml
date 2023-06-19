@@ -1,0 +1,47 @@
+baseurl = "/"
+languageCode = 'en-us'
+title = '0xishtar@temple'
+theme = 'terminal'
+googleAnalytics = 'G-P1SJVVX6K1'
+
+[params]
+  contentTypeName = "posts"
+  showMenuItems = 2
+  
+  fullWidthTheme = false
+  centerTheme = true
+  Toc = true
+  readingTime = false
+
+  GitHubUser = 'xmpf'
+  TwitterUser = 'megatr0nz'
+  author = '0xishtar'
+
+  [params.footer]
+    copyright = "© all rights reversed" 
+
+  [params.widgets]
+    search = true
+    tags = true
+    categories = true
+
+[frontmatter]
+  date = ['date', 'lastmod']
+  lastmod = [':git', 'lastmod', 'date', 'publishDate']
+  author = '0xishtar'
+
+[markup]
+
+  [markup.tableOfContents]
+    endLevel = 8
+    startLevel = 1
+
+  [markup.highlight]
+    style = "gruvbox"
+    codeFences = true
+    tabWidth = 2
+    lineNoStart = 1
+
+[permalinks]
+  posts = '/:year:/:month:/:title:/'
+
