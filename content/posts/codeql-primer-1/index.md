@@ -30,8 +30,7 @@ In this tutorial `javascript` will be used.
 
 1. Download the codeql-cli binary
    1. codeql-cli: https://github.com/github/codeql-cli-binaries/releases
-2. Clone the project
-   1. Project: https://github.com/GitSquared/edex-ui
+2. Clone the target project
 3. Install CodeQL plugin in VSCode
    1. Configure path
    2. Change settings to use `nproc` threads to improve performance
