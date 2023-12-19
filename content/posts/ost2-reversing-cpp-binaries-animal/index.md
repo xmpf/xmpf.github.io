@@ -4,6 +4,7 @@ author: 0xishtar
 date: 14/06/2023
 include_toc: true
 description: Reverse Engineering 3011 - Reversing C++ Binaries (https://p.ost2.fyi/)
+draft: true
 ---
 
 ## General

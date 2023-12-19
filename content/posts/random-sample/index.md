@@ -2,7 +2,7 @@
 title: Malware analysis of a random sample (WIP)
 author: 0xishtar
 description: This is a Work-in-Progress expect changes
-include_toc: true^2](^2)
+include_toc: true
 ---
 
 ## Sample details
